@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.question h3 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #444;
+}
+button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background 0.3s;
+}
+button:hover {
+    background-color: #45a049;
+}
+.job-item {
+    padding: 8px;
+    margin: 5px 0;
+    background: #e0f7fa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.job-item:hover {
+    background: #b2ebf2;
+}
+.desc-box {
+    padding: 15px;
+    background: #fff3e0;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+#result h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
