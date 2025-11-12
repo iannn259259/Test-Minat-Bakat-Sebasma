@@ -3,85 +3,63 @@ const questions = [
         question: "Kamu paling suka kegiatan apa?",
         options: {
             A: ["Mengatur keuangan atau menganalisis data", "Ekonomi"],
-            B: ["Menulis cerita atau artikel", "Sastra Inggris"],
-            C: ["Meneliti makhluk hidup", "Biologi"],
-            D: ["Mempelajari perilaku manusia", "Sosiologi"]
+            B: ["Menulis cerita, artikel, atau menerjemahkan teks", "Sastra Inggris"],
+            C: ["Meneliti makhluk hidup dan eksperimen", "Biologi"],
+            D: ["Mempelajari masyarakat dan perilaku sosial", "Sosiologi"]
         }
     },
     {
-        question: "Kamu lebih suka bekerja di...",
+        question: "Apa pelajaran yang paling kamu nikmati di sekolah?",
         options: {
-            A: ["Kantor dengan analisis dan angka", "Ekonomi"],
-            B: ["Lingkungan dengan komunikasi bahasa", "Sastra Inggris"],
-            C: ["Laboratorium atau lapangan penelitian", "Biologi"],
-            D: ["Lembaga sosial atau pendidikan", "Sosiologi"]
+            A: ["Matematika atau Akuntansi", "Ekonomi"],
+            B: ["Bahasa Inggris atau Bahasa Indonesia", "Sastra Inggris"],
+            C: ["IPA atau Biologi", "Biologi"],
+            D: ["Sosiologi atau Sejarah", "Sosiologi"]
         }
     },
     {
-        question: "Kegiatan apa yang menurutmu paling menarik?",
+        question: "Kalau kerja nanti, kamu ingin pekerjaan seperti apa?",
         options: {
-            A: ["Menghitung dan membuat rencana bisnis", "Ekonomi"],
-            B: ["Membaca dan menerjemahkan teks bahasa asing", "Sastra Inggris"],
-            C: ["Melihat mikroskop dan melakukan eksperimen", "Biologi"],
-            D: ["Menganalisis perilaku masyarakat", "Sosiologi"]
+            A: ["Kantoran dengan data dan angka", "Ekonomi"],
+            B: ["Penulis, editor, atau penerjemah", "Sastra Inggris"],
+            C: ["Peneliti atau tenaga medis", "Biologi"],
+            D: ["Psikolog, guru, atau konselor", "Sosiologi"]
         }
     }
 ];
 
 let currentQuestion = 0;
-const scores = { Ekonomi: 0, "Sastra Inggris": 0, Biologi: 0, Sosiologi: 0 };
+let scores = { Ekonomi: 0, "Sastra Inggris": 0, Biologi: 0, Sosiologi: 0 };
 
-const questionContainer = document.getElementById("question-container");
-const optionsContainer = document.getElementById("options-container");
-const nextBtn = document.getElementById("next-btn");
-const resultContainer = document.getElementById("result-container");
+const quizContainer = document.getElementById("quiz");
+const resultContainer = document.getElementById("result");
 
 function showQuestion() {
-    const q = questions[currentQuestion];
-    questionContainer.textContent = q.question;
-    optionsContainer.innerHTML = "";
-
-    for (const key in q.options) {
-        const [text, category] = q.options[key];
-        const btn = document.createElement("button");
-        btn.textContent = text;
-        btn.onclick = () => selectAnswer(category);
-        optionsContainer.appendChild(btn);
-    }
-}
-
-function selectAnswer(category) {
-    scores[category]++;
-    nextBtn.style.display = "block";
-}
-
-nextBtn.onclick = () => {
-    currentQuestion++;
-    nextBtn.style.display = "none";
-
     if (currentQuestion < questions.length) {
-        showQuestion();
+        const q = questions[currentQuestion];
+        let html = `<h2>${q.question}</h2>`;
+        for (const key in q.options) {
+            html += `<button onclick="selectOption('${q.options[key][1]}')">${q.options[key][0]}</button>`;
+        }
+        quizContainer.innerHTML = html;
     } else {
         showResult();
     }
-};
+}
+
+function selectOption(subject) {
+    scores[subject]++;
+    currentQuestion++;
+    showQuestion();
+}
 
 function showResult() {
-    questionContainer.textContent = "";
-    optionsContainer.innerHTML = "";
-    nextBtn.style.display = "none";
-
-    let best = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-
+    const maxScore = Math.max(...Object.values(scores));
+    const recommended = Object.keys(scores).find(key => scores[key] === maxScore);
+    quizContainer.innerHTML = "";
     resultContainer.innerHTML = `
-    <h3>Hasil Tes Kamu:</h3>
-    <p>Kamu cocok di jurusan <strong>${best}</strong>!</p>
-    <p>Pekerjaan yang sesuai: ${
-        best === "Ekonomi" ? "Analis Keuangan, Akuntan, Manajer Bisnis" :
-            best === "Sastra Inggris" ? "Penerjemah, Penulis, Editor" :
-                best === "Biologi" ? "Ahli Bioteknologi, Peneliti, Dosen" :
-                    "Konselor, Guru, Peneliti Sosial"
-    }</p>
+    <h2>Rekomendasi Jurusan Kamu: ${recommended}</h2>
+    <p>Kamu cocok di bidang <b>${recommended}</b> berdasarkan jawaban kamu.</p>
   `;
 }
 
