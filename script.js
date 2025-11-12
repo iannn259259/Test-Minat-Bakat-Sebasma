@@ -1,162 +1,155 @@
-// =====================
-// DESKRIPSI PEKERJA (HASIL QUIZ)
-// =====================
-function showDeskripsi(list){
-    let html = "<h3>💼 Deskripsi Kerja Berdasarkan Hasil Quiz</h3>";
-    list.forEach(bidang=>{
-        html += showFieldText(bidang);
-    });
-    html += `<button onclick="location.reload()">🔁 Kembali ke Awal</button>`;
-    document.getElementById("result").innerHTML = html;
+const questions = [
+    {
+        question: "Kamu paling suka kegiatan apa?",
+        options: {
+            A: ["Meneliti makhluk hidup dan lingkungan", "Biologi"],
+            B: ["Menganalisis perilaku sosial dan budaya masyarakat", "Sosiologi"],
+            C: ["Mengatur keuangan atau menganalisis data ekonomi", "Ekonomi"],
+            D: ["Menulis cerita, artikel, atau menerjemahkan teks", "Sastra Inggris"]
+        }
+    },
+    {
+        question: "Mata pelajaran apa yang paling kamu kuasai?",
+        options: {
+            A: ["Biologi", "Biologi"],
+            B: ["Sosiologi", "Sosiologi"],
+            C: ["Ekonomi", "Ekonomi"],
+            D: ["Bahasa Inggris", "Sastra Inggris"]
+        }
+    },
+    {
+        question: "Kegiatan mana yang paling menarik bagimu?",
+        options: {
+            A: ["Mengamati eksperimen di laboratorium", "Biologi"],
+            B: ["Menganalisis fenomena sosial", "Sosiologi"],
+            C: ["Membuat laporan keuangan", "Ekonomi"],
+            D: ["Menulis puisi atau menerjemahkan teks", "Sastra Inggris"]
+        }
+    }
+];
+
+let currentQuestion = 0;
+let scores = { "Biologi": 0, "Sosiologi": 0, "Ekonomi": 0, "Sastra Inggris": 0 };
+
+function showQuestion() {
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = "";
+
+    if (currentQuestion < questions.length) {
+        const q = questions[currentQuestion];
+        const qTitle = document.createElement("h2");
+        qTitle.textContent = q.question;
+        quizDiv.appendChild(qTitle);
+
+        for (const key in q.options) {
+            const btn = document.createElement("div");
+            btn.textContent = q.options[key][0];
+            btn.className = "option";
+            btn.onclick = () => {
+                const subject = q.options[key][1];
+                scores[subject]++;
+                currentQuestion++;
+                showQuestion();
+            };
+            quizDiv.appendChild(btn);
+        }
+    } else {
+        showResult();
+    }
 }
 
-// =====================
-// LIHAT SEMUA BIDANG
-// =====================
-function showAllFields(){
-    const fields = ["Ekonomi","Sastra Inggris","Biologi","Sosiologi"];
-    let html = "<h3>📚 Pilih Mata Pelajaran untuk Melihat Deskripsi Kerja</h3>";
-    fields.forEach(f=>{
-        html += `<button onclick="showFieldDesc('${f}')">${f}</button>`;
-    });
-    html += `<button onclick="location.reload()">Kembali ke Awal</button>`;
-    document.getElementById("result").innerHTML = html;
+function showResult() {
+    const resultDiv = document.getElementById("result");
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = "";
+
+    const bestSubject = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    resultDiv.innerHTML = generateCareerInfo(bestSubject);
 }
 
-// =====================
-// TAMPILKAN DESKRIPSI TIAP BIDANG
-// =====================
-function showFieldDesc(field){
-    const html = showFieldText(field);
-    document.getElementById("result").innerHTML = `
-      <h3>${field}</h3>
-      <div class="desc-box">${html.replace(/\n/g, "<br>")}</div>
-      <button onclick="showAllFields()">Kembali ke Pilihan Mapel</button>
-      <button onclick="location.reload()">Kembali ke Awal</button>
+function generateCareerInfo(subject) {
+    const careers = {
+        "Biologi": [
+            {
+                icon: "🧬",
+                title: "Ahli Bioteknologi",
+                desc: "Meneliti dan mengembangkan teknologi berbasis makhluk hidup.",
+                gaji: "Rp 8.000.000 – Rp 20.000.000",
+                univ: ["UI – Fakultas MIPA", "UGM – Fakultas Biologi", "UNAIR – Fakultas Sains dan Teknologi"]
+            },
+            {
+                icon: "🏥",
+                title: "Analis Medis",
+                desc: "Melakukan analisis sampel biologis untuk diagnosa medis.",
+                gaji: "Rp 6.000.000 – Rp 15.000.000",
+                univ: ["UNDIP – Fakultas Kedokteran", "UB – Fakultas Kedokteran"]
+            }
+        ],
+        "Sosiologi": [
+            {
+                icon: "👥",
+                title: "Peneliti Sosial",
+                desc: "Menganalisis fenomena sosial dan memberikan solusi kebijakan.",
+                gaji: "Rp 5.000.000 – Rp 12.000.000",
+                univ: ["UI – Fakultas Ilmu Sosial dan Ilmu Politik", "UGM – Fakultas ISIPOL"]
+            },
+            {
+                icon: "🏛️",
+                title: "Konsultan Masyarakat",
+                desc: "Membantu lembaga memahami dinamika sosial masyarakat.",
+                gaji: "Rp 6.000.000 – Rp 14.000.000",
+                univ: ["UNAIR – Fakultas Ilmu Sosial", "UNPAD – FISIP"]
+            }
+        ],
+        "Ekonomi": [
+            {
+                icon: "💼",
+                title: "Akuntan",
+                desc: "Mencatat dan menganalisis keuangan perusahaan.",
+                gaji: "Rp 5.000.000 – Rp 20.000.000",
+                univ: ["UI – FEB", "UGM – FEB", "UNAIR – FEB"]
+            },
+            {
+                icon: "📊",
+                title: "Analis Keuangan",
+                desc: "Menganalisis data ekonomi untuk keputusan bisnis.",
+                gaji: "Rp 8.000.000 – Rp 25.000.000",
+                univ: ["UNDIP – FEB", "UB – FEB"]
+            }
+        ],
+        "Sastra Inggris": [
+            {
+                icon: "📝",
+                title: "Penulis & Editor",
+                desc: "Menulis artikel, naskah, atau menerjemahkan teks.",
+                gaji: "Rp 4.000.000 – Rp 15.000.000",
+                univ: ["UI – Fakultas Ilmu Budaya", "UGM – Fakultas Ilmu Budaya"]
+            },
+            {
+                icon: "🎙️",
+                title: "Penerjemah & Interpreter",
+                desc: "Menerjemahkan teks atau percakapan antar bahasa.",
+                gaji: "Rp 6.000.000 – Rp 18.000.000",
+                univ: ["UNPAD – Fakultas Sastra", "UNAIR – Fakultas Humaniora"]
+            }
+        ]
+    };
+
+    const selectedCareers = careers[subject];
+    let html = `<h2>Hasil Kamu: ${subject}</h2>`;
+    selectedCareers.forEach(c => {
+        html += `
+      <div class="career-card">
+        <h3>${c.icon} ${c.title}</h3>
+        <p>${c.desc}</p>
+        <p><strong>Kisaran Gaji:</strong> ${c.gaji}</p>
+        <p><strong>Rekomendasi Universitas:</strong></p>
+        <ul>${c.univ.map(u => `<li>${u}</li>`).join("")}</ul>
+      </div>
     `;
+    });
+    html += `<button onclick="location.reload()">🔄 Coba Lagi</button>`;
+    return html;
 }
 
-// =====================
-// TEMPLATE DESKRIPSI LENGKAP
-// =====================
-function showFieldText(field){
-    let desc = "";
-
-    if(field === "Ekonomi"){
-        desc = `
-💰 Pekerjaan: Akuntan
-Deskripsi Pekerjaan:
-Akuntan mencatat, mengelola, dan menganalisis data keuangan. Mereka menyusun laporan keuangan, memastikan kepatuhan pajak, dan memberi saran finansial.
-
-Kisaran Gaji:
-Pemula: Rp 5.000.000 – Rp 10.000.000
-Berpengalaman: Rp 10.000.000 – Rp 15.000.000
-S2: Rp 15.000.000 – Rp 20.000.000
-S3: Rp 20.000.000 – Rp 30.000.000
-
-Rekomendasi Universitas:
-UI, UGM, UNAIR, UNDIP, UB
-
-💹 Pekerjaan: Analis Keuangan
-Deskripsi Pekerjaan:
-Menganalisis tren keuangan dan membantu perusahaan dalam keputusan investasi.
-
-💼 Pekerjaan: Manajer Keuangan
-Deskripsi Pekerjaan:
-Mengatur strategi dan aliran dana perusahaan untuk mencapai stabilitas finansial.
-
-📊 Pekerjaan: Konsultan Pajak
-Deskripsi Pekerjaan:
-Memberikan layanan konsultasi dan pengelolaan pajak untuk individu atau perusahaan.
-        `;
-    }
-
-    else if(field === "Sastra Inggris"){
-        desc = `
-📚 Pekerjaan: Penerjemah
-Deskripsi Pekerjaan:
-Menerjemahkan dokumen, buku, dan teks antar bahasa dengan akurasi tinggi.
-
-Kisaran Gaji:
-Pemula: Rp 4.000.000 – Rp 7.000.000
-Berpengalaman: Rp 7.000.000 – Rp 12.000.000
-S2: Rp 12.000.000 – Rp 18.000.000
-S3: Rp 18.000.000 – Rp 25.000.000
-
-Rekomendasi Universitas:
-UI, UGM, UNDIP, UNPAD, UNAIR
-
-✍️ Pekerjaan: Penulis
-Deskripsi Pekerjaan:
-Menulis karya sastra, artikel, naskah film, atau konten kreatif digital.
-
-📝 Pekerjaan: Editor
-Deskripsi Pekerjaan:
-Menyunting naskah agar lebih efektif dan menarik untuk pembaca.
-
-💡 Pekerjaan: Copywriter
-Deskripsi Pekerjaan:
-Membuat teks promosi dan kampanye iklan yang menarik perhatian publik.
-        `;
-    }
-
-    else if(field === "Biologi"){
-        desc = `
-🔬 Pekerjaan: Ahli Bioteknologi
-Deskripsi Pekerjaan:
-Meneliti dan mengembangkan teknologi berbasis organisme untuk kesehatan, pertanian, dan industri.
-
-Kisaran Gaji:
-Pemula: Rp 6.000.000 – Rp 10.000.000
-Berpengalaman: Rp 10.000.000 – Rp 15.000.000
-S2: Rp 15.000.000 – Rp 25.000.000
-S3: Rp 25.000.000 – Rp 40.000.000
-
-Rekomendasi Universitas:
-UGM, IPB, ITB, UNAIR, UI
-
-🥗 Pekerjaan: Ahli Gizi
-Deskripsi Pekerjaan:
-Mempelajari nutrisi dan memberikan saran pola makan sehat.
-
-🌱 Pekerjaan: Peneliti Lingkungan
-Deskripsi Pekerjaan:
-Menganalisis dampak manusia terhadap alam dan memberi solusi konservasi.
-
-🧪 Pekerjaan: Analis Laboratorium
-Deskripsi Pekerjaan:
-Melakukan eksperimen dan uji biologi untuk riset atau industri.
-        `;
-    }
-
-    else if(field === "Sosiologi"){
-        desc = `
-👥 Pekerjaan: Peneliti Sosial
-Deskripsi Pekerjaan:
-Menganalisis perilaku masyarakat dan perubahan sosial menggunakan metode penelitian ilmiah.
-
-Kisaran Gaji:
-Pemula: Rp 4.500.000 – Rp 8.000.000
-Berpengalaman: Rp 8.000.000 – Rp 15.000.000
-S2: Rp 15.000.000 – Rp 25.000.000
-S3: Rp 25.000.000 – Rp 35.000.000
-
-Rekomendasi Universitas:
-UI, UNPAD, UNAIR, UGM, UNDIP
-
-🤝 Pekerjaan: Konsultan Komunitas
-Deskripsi Pekerjaan:
-Merancang dan mendampingi program sosial untuk meningkatkan kesejahteraan masyarakat.
-
-🎓 Pekerjaan: Dosen Sosiologi
-Deskripsi Pekerjaan:
-Mengajar, meneliti, dan menulis di bidang sosial budaya.
-
-🏛️ Pekerjaan: Analis Kebijakan Publik
-Deskripsi Pekerjaan:
-Menganalisis dan merumuskan kebijakan untuk lembaga pemerintahan dan publik.
-        `;
-    }
-
-    return desc;
-}
+showQuestion()

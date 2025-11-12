@@ -1,77 +1,58 @@
 body {
     font-family: 'Poppins', sans-serif;
-    text-align: center;
-    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-    color: #333;
+    background-color: #eef2f7;
     margin: 0;
     padding: 0;
+    text-align: center;
+}
+
+.container {
+    background: white;
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 h1 {
-    background-color: #007bff;
-    color: white;
-    padding: 20px 0;
+    color: #2c3e50;
     margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-h3 {
-    color: #444;
-}
-
-#quiz, #result {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
 button {
-    margin: 8px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    background-color: #007bff;
+    background: #3498db;
     color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 15px;
-    transition: all 0.3s ease;
+    margin-top: 15px;
+    font-size: 16px;
 }
 
 button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+    background: #2980b9;
 }
 
-.job-item {
-    background-color: #f1f3f5;
-    margin: 8px 0;
+.option {
+    display: block;
+    margin: 10px 0;
+    background: #f4f6f8;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s;
+    border: 1px solid #ccc;
+    transition: 0.3s;
 }
 
-.job-item:hover {
-    background-color: #dee2e6;
-}
-
-.desc-box {
-    padding: 15px;
-    margin: 10px auto;
-    background: #f8f9fa;
-    border-left: 5px solid #007bff;
-    border-radius: 8px;
-    text-align: left;
-    max-width: 600px;
+.option:hover {
+    background: #dce8f5;
 }
 
 footer {
     margin-top: 30px;
-    padding: 10px;
-    background-color: #f1f3f5;
     font-size: 14px;
     color: #555;
 }
