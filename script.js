@@ -1,65 +1,64 @@
-const questionEl = document.getElementById("question");
-const optionsEl = document.getElementById("options");
-const nextBtn = document.getElementById("next-btn");
-const resultEl = document.getElementById("result");
-
 const questions = [
     {
         question: "Kamu paling suka kegiatan apa?",
         options: {
-            A: ["Meneliti makhluk hidup atau tumbuhan", "Biologi"],
-            B: ["Menganalisis perilaku sosial masyarakat", "Sosiologi"],
-            C: ["Mengatur keuangan atau bisnis", "Ekonomi"],
-            D: ["Menulis cerita atau menerjemahkan teks", "Sastra Inggris"]
+            A: ["Mengatur keuangan atau menganalisis data", "Ekonomi"],
+            B: ["Menulis cerita, artikel, atau menerjemahkan teks", "Sastra Inggris"],
+            C: ["Meneliti makhluk hidup atau eksperimen laboratorium", "Biologi"],
+            D: ["Mempelajari perilaku masyarakat dan sosial", "Sosiologi"]
         }
     },
     {
-        question: "Hal apa yang menurutmu paling menarik?",
+        question: "Kamu lebih suka suasana kerja seperti apa?",
         options: {
-            A: ["Penemuan di bidang medis atau bioteknologi", "Biologi"],
-            B: ["Hubungan antar manusia dan budaya", "Sosiologi"],
-            C: ["Pasar saham dan investasi", "Ekonomi"],
-            D: ["Bahasa, komunikasi, dan budaya asing", "Sastra Inggris"]
+            A: ["Kantor dan sistematis", "Ekonomi"],
+            B: ["Kreatif dan fleksibel", "Sastra Inggris"],
+            C: ["Laboratorium atau lapangan penelitian", "Biologi"],
+            D: ["Interaksi dengan masyarakat", "Sosiologi"]
         }
     },
     {
-        question: "Kalau kamu kerja kelompok, kamu biasanya jadi orang yang...",
+        question: "Kalau dapat tugas kelompok, kamu biasanya jadi apa?",
         options: {
-            A: ["Menjelaskan konsep ilmiah", "Biologi"],
-            B: ["Menyatukan pendapat teman-teman", "Sosiologi"],
-            C: ["Mengatur rencana dan anggaran", "Ekonomi"],
-            D: ["Menulis laporan dan memperbaiki bahasa", "Sastra Inggris"]
+            A: ["Pengatur strategi dan pembagian tugas", "Ekonomi"],
+            B: ["Penulis laporan atau penyusun kata", "Sastra Inggris"],
+            C: ["Penyusun data dan analisis hasil", "Biologi"],
+            D: ["Penghubung antaranggota atau mediator", "Sosiologi"]
         }
     }
 ];
 
 let currentQuestion = 0;
-let answers = { Biologi: 0, Sosiologi: 0, Ekonomi: 0, "Sastra Inggris": 0 };
+let scores = { Ekonomi: 0, "Sastra Inggris": 0, Biologi: 0, Sosiologi: 0 };
+
+const questionText = document.getElementById("question-text");
+const optionsContainer = document.getElementById("options-container");
+const nextBtn = document.getElementById("next-btn");
+const resultContainer = document.getElementById("result-container");
 
 function showQuestion() {
     const q = questions[currentQuestion];
-    questionEl.textContent = q.question;
-    optionsEl.innerHTML = "";
+    questionText.textContent = q.question;
+    optionsContainer.innerHTML = "";
 
-    for (let key in q.options) {
-        const [text, subject] = q.options[key];
-        const btn = document.createElement("button");
+    for (const [key, [text, major]] of Object.entries(q.options)) {
+        const btn = document.createElement("div");
+        btn.classList.add("option");
         btn.textContent = text;
-        btn.classList.add("option-btn");
-        btn.onclick = () => selectOption(subject);
-        optionsEl.appendChild(btn);
+        btn.onclick = () => selectOption(major);
+        optionsContainer.appendChild(btn);
     }
-
-    nextBtn.style.display = "none";
 }
 
-function selectOption(subject) {
-    answers[subject]++;
+function selectOption(major) {
+    scores[major]++;
     nextBtn.style.display = "block";
 }
 
 nextBtn.addEventListener("click", () => {
     currentQuestion++;
+    nextBtn.style.display = "none";
+
     if (currentQuestion < questions.length) {
         showQuestion();
     } else {
@@ -68,21 +67,15 @@ nextBtn.addEventListener("click", () => {
 });
 
 function showResult() {
-    questionEl.style.display = "none";
-    optionsEl.style.display = "none";
-    nextBtn.style.display = "none";
-
-    const topSubject = Object.keys(answers).reduce((a, b) =>
-        answers[a] > answers[b] ? a : b
+    document.getElementById("question-container").style.display = "none";
+    const topMajor = Object.keys(scores).reduce((a, b) =>
+        scores[a] > scores[b] ? a : b
     );
 
-    resultEl.style.display = "block";
-    resultEl.innerHTML = `
+    resultContainer.innerHTML = `
     <h2>Hasil Tes Kamu:</h2>
-    <p>Minat karir kamu cocok di bidang <b>${topSubject}</b> 🎯</p>
-    <p>Kamu bisa lihat rekomendasi pekerjaan dan universitas di bawah ini 👇</p>
+    <p>Kamu cocok di jurusan <strong>${topMajor}</strong>.</p>
   `;
 }
 
-// tampilkan pertanyaan pertama saat halaman dimuat
 showQuestion();

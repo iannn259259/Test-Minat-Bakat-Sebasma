@@ -1,63 +1,67 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f2f5f7;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    text-align: center;
+    background-color: #f4f7fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     background-color: #007bff;
     color: white;
-    padding: 20px 0;
-    font-size: 24px;
-    font-weight: bold;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #quiz-container {
-    margin: 40px auto;
     background: white;
-    width: 80%;
-    max-width: 600px;
+    padding: 2rem;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
 }
 
-#options-container button {
-    display: block;
-    width: 100%;
-    margin: 8px 0;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    background-color: #e0e0e0;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#options-container button:hover {
+button {
     background-color: #007bff;
     color: white;
-}
-
-#next-btn {
-    margin-top: 15px;
-    padding: 10px 20px;
     border: none;
-    border-radius: 8px;
-    background-color: #007bff;
-    color: white;
+    border-radius: 5px;
+    padding: 0.7rem 1.5rem;
     cursor: pointer;
+    font-size: 16px;
 }
 
-#next-btn:hover {
+button:hover {
     background-color: #0056b3;
 }
 
-footer {
-    margin-top: 50px;
+.option {
+    display: block;
+    background-color: #f0f0f0;
+    margin: 8px 0;
     padding: 10px;
-    font-size: 14px;
-    color: #555;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #dce3ff;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+    background: #f1f1f1;
 }
