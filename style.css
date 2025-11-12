@@ -18,8 +18,10 @@ main {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
 #quiz-container {
@@ -28,12 +30,19 @@ main {
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 600px;
+    max-width: 650px;
     text-align: center;
 }
 
 h3 {
     color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+h4 {
+    margin-top: 20px;
+    color: #007bff;
 }
 
 button {
@@ -42,35 +51,48 @@ button {
     border: none;
     border-radius: 8px;
     padding: 10px 16px;
-    margin: 6px;
+    margin: 6px 4px;
     cursor: pointer;
     font-size: 15px;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: translateY(-1px);
 }
 
 .job-item {
     background: #f0f0f0;
-    margin: 8px 0;
-    padding: 10px;
+    margin: 10px 0;
+    padding: 12px 15px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.1s;
 }
 
 .job-item:hover {
-    background: #e0e0e0;
+    background: #dfe7ff;
+    transform: translateY(-2px);
 }
 
 .desc-box {
     background: #eef3ff;
     border-left: 4px solid #007bff;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border-radius: 8px;
     margin-bottom: 15px;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 14.5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.desc-box strong {
+    display: inline-block;
+    width: 140px;
 }
 
 footer {
