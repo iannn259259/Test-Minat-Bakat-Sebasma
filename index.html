@@ -3,63 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tes Minat Karir Sebasma</title>
+    <title>🎓 Tes Minat Karir Sebasma</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background: #f9f9f9;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 700px;
+            width: 100%;
         }
-        .bidang-btn {
-            display: inline-block;
-            margin: 5px;
-            padding: 10px 20px;
-            background: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .job-item {
-            margin: 8px 0;
-            padding: 10px;
-            background: #e0f7fa;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        #result {
-            margin-top: 20px;
-        }
+        h1 {text-align:center; color:#1d4ed8;}
+        h2 {color:#1d4ed8;}
         button {
-            margin-top: 10px;
-            padding: 8px 15px;
-            background: #2196f3;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
+            display:block;
+            width:100%;
+            padding:12px;
+            margin:8px 0;
+            font-size:16px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            background:#3b82f6;
+            color:white;
+            transition: background 0.3s;
         }
+        button:hover {background:#2563eb;}
+        .job-btn {
+            background:#60a5fa;
+        }
+        .job-btn:hover {background:#3b82f6;}
+        .desc-box {
+            margin-top:15px;
+            padding:15px;
+            border:1px solid #cbd5e1;
+            border-radius:8px;
+            background:#f1f5f9;
+            white-space: pre-line;
+        }
+        #result {display:none;}
     </style>
 </head>
 <body>
-<h1>🎓 Tes Minat Karir Sebasma</h1>
-
-<div id="bidang">
-    <button class="bidang-btn" onclick="showJobs('Biologi')">🧬 BIOLOGI</button>
-    <button class="bidang-btn" onclick="showJobs('Sosiologi')">🧍‍♂️ SOSIOLOGI</button>
-    <button class="bidang-btn" onclick="showJobs('Ekonomi')">💰 EKONOMI</button>
-    <button class="bidang-btn" onclick="showJobs('Sastra Inggris')">📚 SASTRA INGGRIS</button>
+<div class="container">
+    <h1>🎓 Tes Minat Karir Sebasma</h1>
+    <div id="quiz"></div>
+    <div id="result"></div>
+    <p style="text-align:center; margin-top:15px; font-size:12px;">© 2025 Tes Min</p>
 </div>
 
-<div id="result">
-    <p>Pilih bidang untuk melihat pekerjaan</p>
-</div>
+<script>
+    // =====================
+    // DATA PERTANYAAN
+    // =====================
+    const questions = [
+        {
+            question: "Kamu paling suka kegiatan apa?",
+            options: {
+                A:["Mengatur keuangan atau menganalisis data","Ekonomi"],
+                B:["Menulis cerita, artikel, atau menerjemahkan teks","Sastra Inggris"],
+                C:["Meneliti makhluk hidup dan lingkungan","Biologi"],
+                D:["Mengamati perilaku sosial dan masyarakat","Sosiologi"]
+            }
+        },
+        {
+            question: "Mata pelajaran apa yang paling kamu kuasai?",
+            options: {
+                A:["Matematika dan Ekonomi","Ekonomi"],
+                B:["Bahasa Inggris","Sastra Inggris"],
+                C:["Biologi","Biologi"],
+                D:["Sosiologi","Sosiologi"]
+            }
+        },
+        {
+            question: "Kamu lebih suka bekerja di lingkungan seperti apa?",
+            options: {
+                A:["Perusahaan atau kantor dengan data finansial","Ekonomi"],
+                B:["Studio kreatif atau penerbitan","Sastra Inggris"],
+                C:["Laboratorium penelitian","Biologi"],
+                D:["Lapangan sosial dan komunitas","Sosiologi"]
+            }
+        },
+        {
+            question: "Jika kamu diberi tugas kelompok, peran apa yang paling kamu ambil?",
+            options: {
+                A:["Meneliti data dan mencari fakta","Biologi"],
+                B:["Mengatur komunikasi dan kerja sama kelompok","Sosiologi"],
+                C:["Mendesain atau menulis laporan","Sastra Inggris"],
+                D:["Mengatur rencana dan pembagian tugas","Ekonomi"]
+            }
+        },
+        {
+            question: "Jenis berita atau konten apa yang paling menarik perhatianmu?",
+            options: {
+                A:["Penemuan ilmiah dan teknologi baru","Biologi"],
+                B:["Budaya pop, sastra, atau karya kreatif","Sastra Inggris"],
+                C:["Tren ekonomi dan bisnis","Ekonomi"],
+                D:["Isu sosial, politik, dan kemasyarakatan","Sosiologi"]
+            }
+        },
+        {
+            question: "Teman-teman biasanya mengenal kamu sebagai orang yang...",
+            options: {
+                A:["Imajinatif dan suka bercerita","Sastra Inggris"],
+                B:["Logis dan penuh perhitungan","Ekonomi"],
+                C:["Empatik dan suka menolong","Sosiologi"],
+                D:["Teliti dan suka meriset","Biologi"]
+            }
+        },
+        {
+            question: "Kamu lebih suka membaca tentang...",
+            options: {
+                A:["Kisah tokoh perubahan sosial","Sosiologi"],
+                B:["Penelitian ilmiah dan teknologi","Biologi"],
+                C:["Cerita sastra atau budaya","Sastra Inggris"],
+                D:["Strategi bisnis sukses","Ekonomi"]
+            }
+        },
+        {
+            question: "Kalau ada masalah di sekitar kamu, hal pertama yang kamu pikirkan?",
+            options: {
+                A:["Bagaimana mengomunikasikannya dengan baik","Sastra Inggris"],
+                B:["Bagaimana solusinya secara finansial","Ekonomi"],
+                C:["Apa penyebab ilmiahnya","Biologi"],
+                D:["Bagaimana dampaknya bagi orang lain","Sosiologi"]
+            }
+        },
+        {
+            question: "Kalau kamu lagi jalan-jalan ke tempat baru, hal pertama yang kamu perhatiin apa?",
+            options: {
+                A:["Aktivitas dan kebiasaan orang-orang di sana","Sosiologi"],
+                B:["Keindahan alam atau jenis tumbuhan/hewan uniknya","Biologi"],
+                C:["Arsitektur dan desain bangunannya","Sastra Inggris"],
+                D:["Perkembangan usaha atau toko-toko di sekitarnya","Ekonomi"]
+            }
+        },
+        {
+            question: "Kamu paling suka suasana belajar yang...",
+            options: {
+                A:["Tenang, bisa fokus eksplorasi sendiri","Sastra Inggris"],
+                B:["Ramai, banyak diskusi dan tukar pikiran","Sosiologi"],
+                C:["Praktikal, langsung praktik dan eksperimen","Biologi"],
+                D:["Tertata, jelas langkah-langkah dan targetnya","Ekonomi"]
+            }
+        }
+    ];
 
-<script src="script.js"></script>
+    // =====================
+    // DATA BIDANG / KERJA LENGKAP
+    // =====================
+    const bidangInfo = {/* PASANG SEMUA DATA BIDANG DAN PEKERJAAN LENGKAP DI SINI */};
+
+    // =====================
+    // LOGIKA QUIZ
+    // =====================
+    let currentQuestion = 0;
+    let score = {Ekonomi:0, Biologi:0, "Sastra Inggris":0, Sosiologi:0};
+
+    const quizEl = document.getElementById("quiz");
+    const resultEl = document.getElementById("result");
+
+    function loadQuestion(){
+        const q = questions[currentQuestion];
+        quizEl.innerHTML = `<h2>${q.question}</h2>
+        <button class="option-btn" data-val="A">${q.options.A[0]}</button>
+        <button class="option-btn" data-val="B">${q.options.B[0]}</button>
+        <button class="option-btn" data-val="C">${q.options.C[0]}</button>
+        <button class="option-btn" data-val="D">${q.options.D[0]}</button>
+    `;
+
+        const buttons = document.querySelectorAll(".option-btn");
+        buttons.forEach(btn=>{
+            btn.addEventListener("click", ()=>{
+                const selected = q.options[btn.dataset.val][1];
+                score[selected]++;
+                currentQuestion++;
+                if(currentQuestion < questions.length){
+                    loadQuestion();
+                }else{
+                    showResult();
+                }
+            });
+        });
+    }
+
+    function showResult(){
+        quizEl.style.display = "none";
+        resultEl.style.display = "block";
+
+        let top = Object.keys(score).reduce((a,b)=> score[a]>=score[b]?a:b);
+        resultEl.innerHTML = `<h2>Hasil Tes: ${top}</h2>
+    <p>Kamu cocok di bidang <b>${top}</b>. Pilih pekerjaan di bawah untuk lihat deskripsi lengkapnya:</p>
+    <div class="job-btns">
+        ${Object.keys(bidangInfo[top].pekerjaan).map(job=> `<button class="job-btn">${job}</button>`).join('')}
+    </div>
+    <div class="desc-box"></div>
+    `;
+
+        const jobBtns = document.querySelectorAll(".job-btn");
+        const descBox = document.querySelector(".desc-box");
+
+        jobBtns.forEach(btn=>{
+            btn.addEventListener("click", ()=>{
+                const jobName = btn.textContent;
+                descBox.innerText = bidangInfo[top].pekerjaan[jobName];
+            });
+        });
+    }
+
+    loadQuestion();
+</script>
 </body>
 </html>

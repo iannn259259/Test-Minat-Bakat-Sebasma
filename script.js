@@ -95,214 +95,562 @@ const questions = [
 ];
 
 // =====================
-// DATA BIDANG / KERJA
+// DATA BIDANG / KERJA LENGKAP
 // =====================
-const jobs = {
-    Biologi:[
-        {
-            title:"Ahli Bioteknologi",
-            desc:`Ahli bioteknologi meneliti dan mengembangkan teknologi berbasis organisme hidup untuk menciptakan produk seperti obat, vaksin, dan makanan bernilai tinggi.`,
-            salary:`Pemula: Rp 6.000.000 – Rp 10.000.000/bulan
+const bidangInfo = {
+    Ekonomi: {
+        jurusan:["Akuntansi","Manajemen","Ekonomi Pembangunan"],
+        kampus:["UI","UGM","UNAIR","UNDIP","UB"],
+        pekerjaan: {
+            "Akuntan":`💼 Pekerjaan: Akuntan
+Deskripsi Pekerjaan:
+Akuntan bertugas mencatat, mengelola, dan menganalisis data keuangan suatu organisasi atau individu. Tanggung jawabnya meliputi penyusunan laporan keuangan, pemeriksaan kepatuhan terhadap peraturan pajak, serta memberikan saran finansial untuk membantu pengambilan keputusan yang tepat.
+
+Kisaran Gaji:
+Pemula (0–3 tahun): Rp 5.000.000 – Rp 10.000.000/bulan
+Berpengalaman (3–5 tahun): Rp 10.000.000 – Rp 15.000.000/bulan
+Lulusan S2 (5–10 tahun): Rp 15.000.000 – Rp 20.000.000/bulan
+Lulusan S3 (10–20 tahun): Rp 20.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+1. Universitas Airlangga (UNAIR) – Fakultas Ekonomi dan Bisnis (FEB)
+2. Universitas Indonesia (UI) – Fakultas Ekonomi dan Bisnis (FEB)
+3. Universitas Gadjah Mada (UGM) – Fakultas Ekonomika dan Bisnis (FEB)
+4. Universitas Diponegoro (UNDIP) – Fakultas Ekonomika dan Bisnis (FEB)
+5. Universitas Brawijaya (UB) – Fakultas Ekonomi dan Bisnis (FEB)`,
+
+            "Analis Keuangan":`💼 Pekerjaan: Analis Keuangan
+Deskripsi Pekerjaan:
+Menganalisis kondisi keuangan perusahaan, tren pasar, dan laporan keuangan untuk membantu manajemen membuat keputusan investasi dan strategi bisnis.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 12.000.000/bulan
+Berpengalaman: Rp 12.000.000 – Rp 18.000.000/bulan
+Lulusan S2: Rp 18.000.000 – Rp 25.000.000/bulan
+Lulusan S3: Rp 25.000.000 – Rp 35.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FEB
+UGM – FEB
+ITB – SBM
+UNAIR – FEB`,
+
+            "Ekonom":`💼 Pekerjaan: Ekonom
+Deskripsi Pekerjaan:
+Meneliti, menganalisis, dan memprediksi tren ekonomi serta memberikan saran kebijakan ekonomi untuk pemerintah atau perusahaan.
+
+Kisaran Gaji:
+Pemula: Rp 7.000.000 – Rp 12.000.000/bulan
+Berpengalaman: Rp 12.000.000 – Rp 20.000.000/bulan
+Lulusan S2: Rp 20.000.000 – Rp 30.000.000/bulan
+Lulusan S3: Rp 30.000.000 – Rp 40.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FEB
+UGM – FEB
+UNPAD – FEB
+UB – FEB
+UNAIR – FEB`,
+
+            "Konsultan Bisnis":`💼 Pekerjaan: Konsultan Bisnis
+Deskripsi Pekerjaan:
+Membantu perusahaan meningkatkan efisiensi, mengatasi masalah keuangan, dan mengembangkan strategi pertumbuhan melalui analisis data dan perencanaan strategis.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 10.000.000/bulan
+Berpengalaman: Rp 10.000.000 – Rp 20.000.000/bulan
+Lulusan S2: Rp 20.000.000 – Rp 30.000.000/bulan
+Lulusan S3: Rp 30.000.000 – Rp 40.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FEB
+ITB – SBM
+UGM – FEB
+UNAIR – FEB
+Bina Nusantara – Fakultas Bisnis dan Manajemen`,
+
+            "Investor / Analis Pasar Modal":`💼 Pekerjaan: Investor / Analis Pasar Modal
+Deskripsi Pekerjaan:
+Mengelola portofolio saham, menganalisis risiko investasi, serta mencari peluang keuntungan di pasar keuangan.
+
+Kisaran Gaji:
+Pemula: Rp 7.000.000 – Rp 12.000.000/bulan
+Berpengalaman: Rp 12.000.000 – Rp 25.000.000/bulan
+Lulusan S2: Rp 25.000.000 – Rp 40.000.000/bulan
+Lulusan S3: Rp 40.000.000 – Rp 60.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FEB
+UGM – FEB
+ITB – SBM
+UNDIP – FEB
+UNAIR – FEB`,
+
+            "Auditor Internal":`💼 Pekerjaan: Auditor Internal
+Deskripsi Pekerjaan:
+Memeriksa dan memastikan kepatuhan perusahaan terhadap prosedur keuangan, menganalisis risiko, serta memberikan rekomendasi perbaikan sistem manajemen keuangan.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 10.000.000/bulan
+Berpengalaman: Rp 10.000.000 – Rp 15.000.000/bulan
+Lulusan S2: Rp 15.000.000 – Rp 20.000.000/bulan
+Lulusan S3: Rp 20.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FEB
+UNDIP – FEB
+UNAIR – FEB
+UGM – FEB
+UB – FEB`,
+
+            "Manajer Pemasaran":`💼 Pekerjaan: Manajer Pemasaran
+Deskripsi Pekerjaan:
+Mengembangkan strategi promosi, meningkatkan penjualan produk, dan membangun citra merek perusahaan melalui analisis pasar dan tren konsumen.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 10.000.000/bulan
+Berpengalaman: Rp 10.000.000 – Rp 20.000.000/bulan
+Lulusan S2: Rp 20.000.000 – Rp 30.000.000/bulan
+Lulusan S3: Rp 30.000.000 – Rp 40.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FEB
+ITB – SBM
+UGM – FEB
+Bina Nusantara – Fakultas Ekonomi dan Komunikasi
+UNDIP – FEB`
+        },
+
+        Biologi: {
+            jurusan:["Bioteknologi","Biologi Murni","Ekologi"],
+            kampus:["UGM","IPB","ITB","UNAIR","UI","UNPAD","UNS"],
+            pekerjaan: {
+                "Ahli Bioteknologi":`💼 Pekerjaan: Ahli Bioteknologi
+Deskripsi Pekerjaan:
+Meneliti dan mengembangkan teknologi berbasis organisme hidup untuk menciptakan produk seperti obat, vaksin, dan makanan bernilai tinggi.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 10.000.000/bulan
 Berpengalaman: Rp 10.000.000 – Rp 15.000.000/bulan
 Lulusan S2: Rp 15.000.000 – Rp 25.000.000/bulan
-Lulusan S3: Rp 25.000.000 – Rp 40.000.000/bulan`,
-            uni:`UI – FMIPA
+Lulusan S3: Rp 25.000.000 – Rp 40.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FMIPA
 ITB – Sekolah Ilmu dan Teknologi Hayati
 UGM – Fakultas Biologi
 UNAIR – Fakultas Sains dan Teknologi
-UNPAD – FMIPA`
-        },
-        {
-            title:"Ahli Ekologi",
-            desc:`Ahli ekologi mempelajari hubungan antar makhluk hidup dan lingkungannya untuk menjaga keseimbangan ekosistem dan keberlanjutan alam.`,
-            salary:`Pemula: Rp 5.000.000 – Rp 8.000.000/bulan
+UNPAD – FMIPA`,
+
+                "Ahli Ekologi":`💼 Pekerjaan: Ahli Ekologi
+Deskripsi Pekerjaan:
+Mempelajari hubungan antar makhluk hidup dan lingkungannya untuk menjaga keseimbangan ekosistem dan keberlanjutan alam.
+
+Kisaran Gaji:
+Pemula: Rp 5.000.000 – Rp 8.000.000/bulan
 Berpengalaman: Rp 8.000.000 – Rp 12.000.000/bulan
 Lulusan S2: Rp 12.000.000 – Rp 20.000.000/bulan
-Lulusan S3: Rp 20.000.000 – Rp 30.000.000/bulan`,
-            uni:`IPB – Fakultas Kehutanan dan Lingkungan
+Lulusan S3: Rp 20.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+IPB – Fakultas Kehutanan dan Lingkungan
 UGM – Fakultas Biologi
 UI – FMIPA
 UNAIR – FST
-UNS – Fakultas Biologi`
-        },
-        {
-            title:"Ahli Gizi",
-            desc:`Ahli gizi memantau dan merancang pola makan sehat untuk meningkatkan kesehatan individu dan masyarakat.`,
-            salary:`Pemula: Rp 4.000.000 – Rp 7.000.000/bulan
+UNS – Fakultas Biologi`,
+
+                "Ahli Gizi":`💼 Pekerjaan: Ahli Gizi
+Deskripsi Pekerjaan:
+Memantau dan merancang pola makan sehat untuk meningkatkan kesehatan individu dan masyarakat.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 7.000.000/bulan
 Berpengalaman: Rp 7.000.000 – Rp 12.000.000/bulan
 Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
-Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan`,
-            uni:`IPB – Fakultas Ekologi Manusia
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+IPB – Fakultas Ekologi Manusia
 UGM – FK-KMK
 UNAIR – FKM
 UI – FKM
-UNDIP – FKM`
-        },
-        {
-            title:"Peneliti Medis",
-            desc:`Peneliti medis mencari inovasi di bidang kesehatan seperti obat, vaksin, dan metode pengobatan baru.`,
-            salary:`Pemula: Rp 6.000.000 – Rp 9.000.000/bulan
+UNDIP – FKM`,
+
+                "Peneliti Medis":`💼 Pekerjaan: Peneliti Medis
+Deskripsi Pekerjaan:
+Mencari inovasi di bidang kesehatan seperti obat, vaksin, dan metode pengobatan baru.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 9.000.000/bulan
 Berpengalaman: Rp 9.000.000 – Rp 14.000.000/bulan
 Lulusan S2: Rp 14.000.000 – Rp 22.000.000/bulan
-Lulusan S3: Rp 22.000.000 – Rp 35.000.000/bulan`,
-            uni:`UI – Fakultas Kedokteran
+Lulusan S3: Rp 22.000.000 – Rp 35.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – Fakultas Kedokteran
 UGM – Fakultas Kedokteran
 ITB – Sekolah Farmasi
 UNAIR – Fakultas Kedokteran
-UNHAS – Fakultas Kedokteran`
-        }
-        // ... bisa ditambah semua pekerjaan Biologi lainnya
-    ],
-    Sosiologi:[
-        {
-            title:"Peneliti Sosial",
-            desc:`Melakukan penelitian terhadap tren sosial, perilaku masyarakat, dan dinamika ekonomi untuk lembaga riset atau universitas.`,
-            salary:`Pemula: Rp 5.000.000 – Rp 8.000.000/bulan
-Berpengalaman: Rp 8.000.000 – Rp 13.000.000/bulan
-Lulusan S2: Rp 13.000.000 – Rp 18.000.000/bulan
-Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan`,
-            uni:`UI – FISIP
+UNHAS – Fakultas Kedokteran`,
+
+                "Mikrobiolog":`💼 Pekerjaan: Mikrobiolog
+Deskripsi Pekerjaan:
+Mempelajari mikroorganisme seperti bakteri dan virus, serta perannya dalam kesehatan, makanan, dan lingkungan.
+
+Kisaran Gaji:
+Pemula: Rp 5.000.000 – Rp 8.000.000/bulan
+Berpengalaman: Rp 8.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 20.000.000/bulan
+Lulusan S3: Rp 20.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UGM – Fakultas Biologi
+UI – FMIPA Biologi
+ITB – Sekolah Hayati
+UNAIR – FST
+UNPAD – FMIPA`,
+
+                "Ahli Pertanian Modern":`💼 Pekerjaan: Ahli Pertanian Modern
+Deskripsi Pekerjaan:
+Mengembangkan teknik tanam efisien dengan bioteknologi dan sistem pertanian berkelanjutan.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 7.000.000/bulan
+Berpengalaman: Rp 7.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 20.000.000/bulan
+Lulusan S3: Rp 20.000.000 – Rp 28.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+IPB – Fakultas Pertanian
+UGM – Fakultas Pertanian
+UNPAD – Fakultas Pertanian
+UB – Fakultas Pertanian
+UNAIR – FST`,
+
+                "Ahli Forensik Biologi":`💼 Pekerjaan: Ahli Forensik Biologi
+Deskripsi Pekerjaan:
+Menganalisis DNA, darah, dan jaringan tubuh untuk membantu penyelidikan kejahatan.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 9.000.000/bulan
+Berpengalaman: Rp 9.000.000 – Rp 14.000.000/bulan
+Lulusan S2: Rp 14.000.000 – Rp 22.000.000/bulan
+Lulusan S3: Rp 22.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – Fakultas Kedokteran
+UGM – Fakultas Biologi
+UNAIR – Fakultas Kedokteran
+UNHAS – Fakultas Kedokteran
+ITB – Sekolah Hayati`
+            },
+
+            "Sastra Inggris": {
+                jurusan:["Sastra Inggris","Linguistik","Penerjemahan"],
+                kampus:["UI","UNPAD","UNDIP"],
+                pekerjaan: {
+                    "Penulis / Editor":`💼 Pekerjaan: Penulis / Editor
+Deskripsi Pekerjaan:
+Membuat dan menyunting teks seperti artikel, novel, atau konten media. Profesi ini membutuhkan kemampuan bahasa, tata tulis, dan kreativitas tinggi.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 8.000.000/bulan
+Berpengalaman: Rp 8.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FIB
+UGM – FIB
+UNAIR – FIB
+UNDIP – FIB
+UNPAD – FIB`,
+
+                    "Penerjemah":`💼 Pekerjaan: Penerjemah
+Deskripsi Pekerjaan:
+Mengubah teks atau percakapan dari bahasa Inggris ke bahasa Indonesia atau sebaliknya.
+
+Kisaran Gaji:
+Pemula: Rp 5.000.000 – Rp 9.000.000/bulan
+Berpengalaman: Rp 9.000.000 – Rp 15.000.000/bulan
+Lulusan S2: Rp 15.000.000 – Rp 20.000.000/bulan
+Lulusan S3: Rp 20.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FIB
+UGM – FIB
+UNAIR – FIB
+UNPAD – FIB
+UNDIP – FIB`,
+
+                    "Public Relations (PR)":`💼 Pekerjaan: Public Relations (PR)
+Deskripsi Pekerjaan:
+Membangun hubungan baik antara perusahaan dan publik melalui komunikasi efektif, event, dan media.
+
+Kisaran Gaji:
+Pemula: Rp 5.000.000 – Rp 9.000.000/bulan
+Berpengalaman: Rp 9.000.000 – Rp 15.000.000/bulan
+Lulusan S2: Rp 15.000.000 – Rp 22.000.000/bulan
+Lulusan S3: Rp 22.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UNPAD – Ilmu Komunikasi
+UI – FISIP (Komunikasi)
+Bina Nusantara – Ilmu Komunikasi
+UGM – Ilmu Komunikasi
+UNAIR – Ilmu Komunikasi`,
+
+                    "Content Creator / Copywriter":`💼 Pekerjaan: Content Creator / Copywriter
+Deskripsi Pekerjaan:
+Menciptakan konten menarik untuk media sosial, website, atau iklan dengan kemampuan menulis persuasif dan kreatif.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 8.000.000/bulan
+Berpengalaman: Rp 8.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FIB
+Bina Nusantara – Komunikasi
+UNPAD – Ilmu Komunikasi
+UNAIR – FIB
+UGM – FIB`,
+
+                    "Guru Bahasa Inggris":`💼 Pekerjaan: Guru Bahasa Inggris
+Deskripsi Pekerjaan:
+Mengajar tata bahasa, kosa kata, serta keterampilan berbicara dan menulis dalam bahasa Inggris kepada siswa di sekolah atau lembaga kursus.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 7.000.000/bulan
+Berpengalaman: Rp 7.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UNJ – Fakultas Bahasa dan Seni
+UNY – Fakultas Bahasa dan Seni
+UI – FIB
+UGM – FIB
+UPI – Fakultas Bahasa dan Sastra`,
+
+                    "Tour Guide Internasional":`💼 Pekerjaan: Tour Guide Internasional
+Deskripsi Pekerjaan:
+Memandu wisatawan mancanegara, memberikan informasi sejarah dan budaya, serta memastikan perjalanan berjalan lancar.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 8.000.000/bulan
+Berpengalaman: Rp 8.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+Udayana – Fakultas Pariwisata
+UGM – FIB
+UI – FIB
+UNAIR – FIB
+UNS – FIB`,
+
+                    "Linguist (Ahli Bahasa)":`💼 Pekerjaan: Linguist (Ahli Bahasa)
+Deskripsi Pekerjaan:
+Meneliti struktur, sejarah, dan penggunaan bahasa untuk keperluan akademik, teknologi bahasa, atau pendidikan.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 10.000.000/bulan
+Berpengalaman: Rp 10.000.000 – Rp 15.000.000/bulan
+Lulusan S2: Rp 15.000.000 – Rp 20.000.000/bulan
+Lulusan S3: Rp 20.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FIB (Linguistik)
+UGM – FIB
+UNAIR – FIB
+UNDIP – FIB
+UNHAS – FIB`
+                },
+
+                Sosiologi: {
+                    jurusan:["Sosiologi","Ilmu Politik","Antropologi"],
+                    kampus:["UI","UGM","UNAIR","UNPAD","UNS"],
+                    pekerjaan: {
+                        "Sosiolog":`💼 Pekerjaan: Sosiolog
+Deskripsi Pekerjaan:
+Menganalisis perilaku masyarakat dan perubahan sosial untuk memahami pola interaksi sosial.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 8.000.000/bulan
+Berpengalaman: Rp 8.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FISIP
 UGM – FISIPOL
 UNAIR – FISIP
 UNPAD – FISIP
-UNS – FISIP`
-        },
-        {
-            title:"Konsultan Sosial",
-            desc:`Memberikan saran kepada pemerintah, NGO, atau lembaga sosial dalam menangani masalah masyarakat.`,
-            salary:`Pemula: Rp 4.000.000 – Rp 7.000.000/bulan
+UNS – FISIP`,
+
+                        "Jurnalis Sosial":`💼 Pekerjaan: Jurnalis Sosial
+Deskripsi Pekerjaan:
+Menulis dan melaporkan isu-isu sosial, kemanusiaan, dan politik yang mempengaruhi masyarakat luas.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 7.000.000/bulan
 Berpengalaman: Rp 7.000.000 – Rp 12.000.000/bulan
 Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
-Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan`,
-            uni:`UI – FISIP
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – Ilmu Komunikasi
+UNPAD – FIKOM
+UGM – FISIPOL
+UNAIR – FISIP
+UMN – FIKOM`,
+
+                        "Analis Kebijakan Publik":`💼 Pekerjaan: Analis Kebijakan Publik
+Deskripsi Pekerjaan:
+Menilai dampak program pemerintah dan menyusun rekomendasi untuk kebijakan sosial yang lebih baik.
+
+Kisaran Gaji:
+Pemula: Rp 5.000.000 – Rp 9.000.000/bulan
+Berpengalaman: Rp 9.000.000 – Rp 14.000.000/bulan
+Lulusan S2: Rp 14.000.000 – Rp 22.000.000/bulan
+Lulusan S3: Rp 22.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UGM – FISIPOL
+UI – FISIP
+UNAIR – FISIP
+UB – FISIP
+UNDIP – FISIP`,
+
+                        "Konsultan Sosial":`💼 Pekerjaan: Konsultan Sosial
+Deskripsi Pekerjaan:
+Memberikan saran kepada pemerintah, NGO, atau lembaga sosial dalam menangani masalah masyarakat.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 7.000.000/bulan
+Berpengalaman: Rp 7.000.000 – Rp 12.000.000/bulan
+Lulusan S2: Rp 12.000.000 – Rp 18.000.000/bulan
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FISIP
 UGM – FISIPOL
 UNAIR – FISIP
 UNHAS – FISIP
-UNPAD – FISIP`
-        }
-        // ... semua pekerjaan sosiologi lainnya
-    ],
-    Ekonomi:[
-        {
-            title:"Akuntan",
-            desc:`Akuntan bertugas mencatat, mengelola, dan menganalisis data keuangan suatu organisasi atau individu. Tanggung jawabnya meliputi penyusunan laporan keuangan, pemeriksaan kepatuhan terhadap peraturan pajak, serta memberikan saran finansial untuk membantu pengambilan keputusan yang tepat.`,
-            salary:`Pemula: Rp 5.000.000 – Rp 10.000.000
-Berpengalaman: Rp 10.000.000 – Rp 15.000.000
-Lulusan S2: Rp 15.000.000 – Rp 20.000.000
-Lulusan S3: Rp 20.000.000 – Rp 30.000.000`,
-            uni:`Universitas Airlangga (UNAIR) – Fakultas Ekonomi dan Bisnis (FEB)
-Universitas Indonesia (UI) – Fakultas Ekonomi dan Bisnis (FEB)
-Universitas Gadjah Mada (UGM) – Fakultas Ekonomika dan Bisnis (FEB)
-Universitas Diponegoro (UNDIP) – Fakultas Ekonomika dan Bisnis (FEB)
-Universitas Brawijaya (UB) – Fakultas Ekonomi dan Bisnis (FEB)`
-        }
-        // ... semua pekerjaan ekonomi lainnya
-    ],
-    "Sastra Inggris":[
-        {
-            title:"Penulis atau Editor",
-            desc:`Penulis atau editor bertanggung jawab membuat dan menyunting teks seperti artikel, novel, atau konten media. Profesi ini membutuhkan kemampuan bahasa, tata tulis, dan kreativitas tinggi.`,
-            salary:`Pemula: Rp 4.000.000 – Rp 8.000.000
-Berpengalaman: Rp 8.000.000 – Rp 12.000.000
-Lulusan S2: Rp 12.000.000 – Rp 18.000.000
-Lulusan S3: Rp 18.000.000 – Rp 25.000.000`,
-            uni:`Universitas Indonesia – Fakultas Ilmu Budaya (FIB)
-Universitas Gadjah Mada – FIB
-Universitas Airlangga – FIB
-Universitas Diponegoro – FIB
-Universitas Padjadjaran – FIB`
-        }
-        // ... semua pekerjaan sastra Inggris lainnya
-    ]
-};
+UNPAD – FISIP`,
+
+                        "Peneliti Sosial":`💼 Pekerjaan: Peneliti Sosial
+Deskripsi Pekerjaan:
+Melakukan penelitian terhadap tren sosial, perilaku masyarakat, dan dinamika ekonomi untuk lembaga riset atau universitas.
+
+Kisaran Gaji:
+Pemula: Rp 5.000.000 – Rp 8.000.000/bulan
+Berpengalaman: Rp 8.000.000 – Rp 13.000.000/bulan
+Lulusan S2: Rp 13.000.000 – Rp 18.000.000/bulan
+Lulusan S3: Rp 18.000.000 – Rp 25.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FISIP
+UGM – FISIPOL
+UNAIR – FISIP
+UNPAD – FISIP
+UNS – FISIP`,
+
+                        "Pekerja LSM (NGO)":`💼 Pekerjaan: Pekerja LSM (NGO)
+Deskripsi Pekerjaan:
+Bekerja di lembaga nonpemerintah yang fokus pada isu sosial seperti kemiskinan, lingkungan, dan pendidikan.
+
+Kisaran Gaji:
+Pemula: Rp 4.000.000 – Rp 8.000.000/bulan
+Berpengalaman: Rp 8.000.000 – Rp 15.000.000/bulan
+Lulusan S2: Rp 15.000.000 – Rp 20.000.000/bulan
+Lulusan S3: Rp 20.000.000 – Rp 28.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FISIP
+UGM – FISIPOL
+UNAIR – FISIP
+UNPAD – FISIP
+UNDIP – FISIP`,
+
+                        "Dosen Sosiologi":`💼 Pekerjaan: Dosen Sosiologi
+Deskripsi Pekerjaan:
+Mengajar dan meneliti dalam bidang sosiologi untuk mengembangkan ilmu pengetahuan sosial di perguruan tinggi.
+
+Kisaran Gaji:
+Pemula: Rp 6.000.000 – Rp 10.000.000/bulan
+Berpengalaman: Rp 10.000.000 – Rp 15.000.000/bulan
+Lulusan S2: Rp 15.000.000 – Rp 22.000.000/bulan
+Lulusan S3: Rp 22.000.000 – Rp 30.000.000/bulan
+
+Rekomendasi Universitas dan Fakultas:
+UI – FISIP
+UGM – FISIPOL
+UNAIR – FISIP
+UNPAD – FISIP
+UB – FISIP`
+                    }
+                };
 
 // =====================
-// VARIABEL
+// LOGIKA QUIZ
 // =====================
-let scores = {Ekonomi:0,"Sastra Inggris":0,Biologi:0,Sosiologi:0};
-let current = 0;
+                let currentQuestion = 0;
+                let score = {Ekonomi:0, Biologi:0, "Sastra Inggris":0, Sosiologi:0};
 
-// =====================
-// FUNGSI UTAMA QUIZ
-// =====================
-function shuffleOptions(options){
-    const entries = Object.entries(options);
-    for(let i=entries.length-1;i>0;i--){
-        const j = Math.floor(Math.random()*(i+1));
-        [entries[i],entries[j]]=[entries[j],entries[i]];
-    }
-    return entries;
+                const quizEl = document.getElementById("quiz");
+                const resultEl = document.getElementById("result");
+                const descBox = document.querySelector(".desc-box");
+
+                function loadQuestion(){
+    const q = questions[currentQuestion];
+    quizEl.innerHTML = `<h2>${q.question}</h2>
+        <button class="option-btn" data-val="A">${q.options.A[0]}</button>
+        <button class="option-btn" data-val="B">${q.options.B[0]}</button>
+        <button class="option-btn" data-val="C">${q.options.C[0]}</button>
+        <button class="option-btn" data-val="D">${q.options.D[0]}</button>
+    `;
+
+    const buttons = document.querySelectorAll(".option-btn");
+    buttons.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+            const selected = q.options[btn.dataset.val][1];
+            score[selected]++;
+            currentQuestion++;
+            if(currentQuestion < questions.length){
+                loadQuestion();
+            }else{
+                showResult();
+            }
+        });
+    });
 }
 
-function showQuestion(){
-    const q = questions[current];
-    const container = document.getElementById("quiz");
-    const shuffled = shuffleOptions(q.options);
-    container.innerHTML = `
-    <div class="question">
-      <h3>${q.question}</h3>
-      ${shuffled.map(([key,[text]])=>`<button onclick="answer('${key}')">${text}</button>`).join("<br>")}
-    </div>
-  `;
-}
-
-function answer(option){
-    const bidang = questions[current].options[option][1];
-    scores[bidang]++;
-    current++;
-    if(current<questions.length) showQuestion();
-    else showResult();
-}
-
-// =====================
-// HASIL QUIZ
-// =====================
 function showResult(){
-    const maxScore = Math.max(...Object.values(scores));
-    const hasilList = Object.keys(scores).filter(key=>scores[key]===maxScore);
-    document.getElementById("quiz").innerHTML="";
-    document.getElementById("result").innerHTML=`
-    <h3>🎯 Hasil Quiz</h3>
-    <p><strong>Bidang Studi Dominan:</strong> ${hasilList.join(", ")}</p>
-    <button onclick='showAllFields()'>Lihat Semua Pekerjaan</button>
-  `;
-}
+    quizEl.style.display = "none";
+    resultEl.style.display = "block";
 
-// =====================
-// TAMPILKAN SEMUA PEKERJAAN
-// =====================
-function showAllFields(){
-    let html="<h3>📚 Pilih Mapel</h3>";
-    Object.keys(jobs).forEach(mapel=>{
-        html+=`<button onclick="showJobs('${mapel}')">${mapel}</button>`;
+    // cari score tertinggi
+    let top = Object.keys(score).reduce((a,b)=> score[a]>=score[b]?a:b);
+    resultEl.innerHTML = `<h2>Hasil Tes: ${top}</h2>
+    <p>Kamu cocok di bidang <b>${top}</b>. Pilih pekerjaan di bawah untuk lihat deskripsi lengkapnya:</p>
+    <div class="job-btns">
+        ${Object.keys(bidangInfo[top].pekerjaan).map(job=> `<button class="job-btn">${job}</button>`).join('')}
+    </div>
+    <div class="desc-box"></div>
+    `;
+
+    const jobBtns = document.querySelectorAll(".job-btn");
+    const descBox = document.querySelector(".desc-box");
+
+    jobBtns.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+            const jobName = btn.textContent;
+            descBox.innerText = bidangInfo[top].pekerjaan[jobName];
+        });
     });
-    html+=`<button onclick="location.reload()">Ulangi Quiz</button>`;
-    document.getElementById("result").innerHTML=html;
 }
 
-function showJobs(mapel){
-    let html=`<h3>📌 Pekerjaan di ${mapel}</h3>`;
-    jobs[mapel].forEach((job,index)=>{
-        html+=`<button onclick="showJobDetail('${mapel}',${index})">${job.title}</button><br>`;
-    });
-    html+=`<button onclick="showAllFields()">Kembali</button>`;
-    document.getElementById("result").innerHTML=html;
-}
-
-function showJobDetail(mapel,index){
-    const job = jobs[mapel][index];
-    document.getElementById("result").innerHTML=`
-    <h3>💼 Pekerjaan: ${job.title}</h3>
-    <p><strong>Deskripsi Pekerjaan:</strong><br>${job.desc}</p>
-    <p><strong>Kisaran Gaji:</strong><br>${job.salary.replace(/\n/g,"<br>")}</p>
-    <p><strong>Rekomendasi Universitas dan Fakultas:</strong><br>${job.uni.replace(/\n/g,"<br>")}</p>
-    <button onclick="showJobs('${mapel}')">Kembali ke Pekerjaan ${mapel}</button>
-    <button onclick="showAllFields()">Kembali ke Mapel</button>
-    <button onclick="location.reload()">Ulangi Quiz</button>
-  `;
-}
-
-// =====================
-// MULAI QUIZ
-// =====================
-showQuestion();
+loadQuestion();
