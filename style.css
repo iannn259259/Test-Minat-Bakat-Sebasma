@@ -1,100 +1,102 @@
+/* ===== BODY ===== */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f9;
     margin: 0;
-    background-color: #f4f7fa;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    padding: 0;
 }
 
+/* ===== HEADER ===== */
 header {
-    background-color: #007bff;
+    background-color: #1e90ff;
     color: white;
     text-align: center;
     padding: 1.5rem 0;
 }
 
-main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    flex-direction: column;
-    align-items: center;
-}
-
+/* ===== QUIZ CONTAINER ===== */
 #quiz-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 650px;
-    text-align: center;
+    max-width: 700px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 25px 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-h3 {
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
+/* ===== PERTANYAAN ===== */
+.question h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #1a1a1a;
 }
 
-h4 {
-    margin-top: 20px;
-    color: #007bff;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
+/* ===== BUTTON JAWABAN ===== */
+.question button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px 18px;
+    font-size: 1rem;
+    background: #1e90ff;
+    color: #fff;
     border: none;
     border-radius: 8px;
-    padding: 10px 16px;
-    margin: 6px 4px;
     cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-1px);
+.question button:hover {
+    background: #1c7ed6;
+}
+
+/* ===== HASIL QUIZ ===== */
+#result h3 {
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .job-item {
-    background: #f0f0f0;
+    background: #e0f0ff;
     margin: 10px 0;
-    padding: 12px 15px;
+    padding: 12px 18px;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: 500;
-    font-size: 15px;
-    transition: background 0.2s, transform 0.1s;
+    transition: 0.3s;
 }
 
 .job-item:hover {
-    background: #dfe7ff;
-    transform: translateY(-2px);
+    background: #b6e0fe;
 }
 
 .desc-box {
-    background: #eef3ff;
-    border-left: 4px solid #007bff;
+    background: #f0faff;
     padding: 15px 20px;
+    border-left: 4px solid #1e90ff;
+    border-radius: 6px;
+    margin: 15px 0;
+    white-space: pre-line;
+}
+
+/* ===== TOMBOL ===== */
+button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-top: 15px;
     border-radius: 8px;
-    margin-bottom: 15px;
-    text-align: left;
-    line-height: 1.6;
-    font-size: 14.5px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border: none;
+    cursor: pointer;
+    background: #1e90ff;
+    color: #fff;
+    transition: 0.3s;
 }
 
-.desc-box strong {
-    display: inline-block;
-    width: 140px;
+button:hover {
+    background: #1c7ed6;
 }
 
+/* ===== FOOTER ===== */
 footer {
     background: #f1f1f1;
     text-align: center;
