@@ -3,14 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Karir</title>
+    <title>Tes Minat Karir</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
-    <div id="quiz"></div>
-    <div id="result"></div>
+    <h1>🎓 Tes Minat Karir Sebasma</h1>
+
+    <div id="quiz-container">
+        <div id="question-container"></div>
+        <div id="options-container"></div>
+        <button id="next-btn">Selanjutnya</button>
+    </div>
+
+    <div id="result-container" class="hidden">
+        <h2>Mapel Minat Utama: <span id="main-subject"></span></h2>
+        <button id="show-jobs-btn">Lihat Deskripsi Kerja</button>
+        <button id="show-other-subjects-btn">Lihat Deskripsi Kerja Lainnya</button>
+        <div id="jobs-container"></div>
+    </div>
+
+    <div id="subject-selector" class="hidden">
+        <h3>Pilih Mapel:</h3>
+        <select id="subject-select">
+            <option value="BIOLOGI">Biologi</option>
+            <option value="SOSIOLOGI">Sosiologi</option>
+            <option value="EKONOMI">Ekonomi</option>
+            <option value="SASTRA INGGRIS">Sastra Inggris</option>
+        </select>
+        <button id="show-selected-jobs-btn">Tampilkan Pekerjaan</button>
+    </div>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>
