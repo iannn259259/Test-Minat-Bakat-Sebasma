@@ -1,82 +1,264 @@
-const jobsData = {
-    Biologi: [
-        { name: "Ahli Bioteknologi", desc: "Meneliti & mengembangkan teknologi berbasis organisme hidup.", salary: "Pemula: Rp6-10 jt, Berpengalaman: Rp10-15 jt", universities: "UI, ITB, UGM, UNAIR, UNPAD" },
-        { name: "Ahli Ekologi", desc: "Mempelajari hubungan makhluk hidup & lingkungannya.", salary: "Pemula: Rp5-8 jt, Berpengalaman: Rp8-12 jt", universities: "IPB, UGM, UI, UNAIR, UNS" },
-        { name: "Ahli Gizi", desc: "Memantau & merancang pola makan sehat.", salary: "Pemula: Rp4-7 jt, Berpengalaman: Rp7-12 jt", universities: "IPB, UGM, UNAIR, UI, UNDIP" },
-        { name: "Peneliti Medis", desc: "Mencari inovasi di bidang kesehatan.", salary: "Pemula: Rp6-9 jt, Berpengalaman: Rp9-14 jt", universities: "UI, UGM, ITB, UNAIR, UNHAS" },
-        { name: "Mikrobiolog", desc: "Mempelajari mikroorganisme & perannya.", salary: "Pemula: Rp5-8 jt, Berpengalaman: Rp8-12 jt", universities: "UGM, UI, ITB, UNAIR, UNPAD" },
-        { name: "Ahli Pertanian Modern", desc: "Mengembangkan teknik tanam efisien & berkelanjutan.", salary: "Pemula: Rp4-7 jt, Berpengalaman: Rp7-12 jt", universities: "IPB, UGM, UNPAD, UB, UNAIR" },
-        { name: "Ahli Forensik Biologi", desc: "Menganalisis DNA & jaringan tubuh untuk penyelidikan.", salary: "Pemula: Rp6-9 jt, Berpengalaman: Rp9-14 jt", universities: "UI, UGM, UNAIR, UNHAS, ITB" }
-    ],
-    Sosiologi: [
-        { name: "Sosiolog", desc: "Menganalisis perilaku masyarakat & perubahan sosial.", salary: "Pemula: Rp4-8 jt, Berpengalaman: Rp8-12 jt", universities: "UI, UGM, UNAIR, UNPAD, UNS" },
-        { name: "Jurnalis Sosial", desc: "Menulis & melaporkan isu sosial & politik.", salary: "Pemula: Rp4-7 jt, Berpengalaman: Rp7-12 jt", universities: "UI, UNPAD, UGM, UNAIR, UMN" },
-        { name: "Analis Kebijakan Publik", desc: "Menilai program pemerintah & rekomendasi kebijakan.", salary: "Pemula: Rp5-9 jt, Berpengalaman: Rp9-14 jt", universities: "UGM, UI, UNAIR, UB, UNDIP" },
-        { name: "Konsultan Sosial", desc: "Memberikan saran untuk lembaga sosial & pemerintah.", salary: "Pemula: Rp4-7 jt, Berpengalaman: Rp7-12 jt", universities: "UI, UGM, UNAIR, UNHAS, UNPAD" },
-        { name: "Peneliti Sosial", desc: "Melakukan penelitian tren sosial & perilaku masyarakat.", salary: "Pemula: Rp5-8 jt, Berpengalaman: Rp8-13 jt", universities: "UI, UGM, UNAIR, UNPAD, UNS" },
-        { name: "Pekerja LSM (NGO)", desc: "Bekerja di lembaga nonpemerintah fokus isu sosial.", salary: "Pemula: Rp4-8 jt, Berpengalaman: Rp8-15 jt", universities: "UI, UGM, UNAIR, UNPAD, UNDIP" },
-        { name: "Dosen Sosiologi", desc: "Mengajar & meneliti bidang sosiologi.", salary: "Pemula: Rp6-10 jt, Berpengalaman: Rp10-15 jt", universities: "UI, UGM, UNAIR, UNPAD, UB" }
-    ],
-    Ekonomi: [
-        { name: "Akuntan", desc: "Mencatat, mengelola & menganalisis data keuangan.", salary: "Pemula: Rp5-10 jt, Berpengalaman: Rp10-15 jt", universities: "UI, UGM, UNAIR, UNDIP, UB" },
-        { name: "Analis Keuangan", desc: "Menganalisis kondisi keuangan perusahaan & pasar.", salary: "Pemula: Rp6-12 jt, Berpengalaman: Rp12-18 jt", universities: "UI, UGM, ITB, UNDIP, UNAIR" },
-        { name: "Ekonom", desc: "Meneliti & memprediksi tren ekonomi.", salary: "Pemula: Rp7-12 jt, Berpengalaman: Rp12-20 jt", universities: "UI, UGM, UNPAD, UB, UNAIR" },
-        { name: "Konsultan Bisnis", desc: "Membantu perusahaan mengembangkan strategi.", salary: "Pemula: Rp6-10 jt, Berpengalaman: Rp10-20 jt", universities: "UI, ITB, UGM, UNAIR, BINUS" },
-        { name: "Investor / Analis Pasar Modal", desc: "Mengelola portofolio saham & risiko investasi.", salary: "Pemula: Rp7-12 jt, Berpengalaman: Rp12-25 jt", universities: "UI, UGM, ITB, UNDIP, UNAIR" },
-        { name: "Auditor Internal", desc: "Memeriksa kepatuhan & risiko perusahaan.", salary: "Pemula: Rp6-10 jt, Berpengalaman: Rp10-15 jt", universities: "UI, UNDIP, UNAIR, UGM, UB" },
-        { name: "Manajer Pemasaran", desc: "Mengembangkan strategi promosi & meningkatkan penjualan.", salary: "Pemula: Rp6-10 jt, Berpengalaman: Rp10-20 jt", universities: "UI, ITB, UGM, BINUS, UNDIP" }
-    ],
-    "Sastra Inggris": [
-        { name: "Penulis atau Editor", desc: "Membuat & menyunting teks, artikel, novel.", salary: "Pemula: Rp4-8 jt, Berpengalaman: Rp8-12 jt", universities: "UI, UGM, UNAIR, UNDIP, UNPAD" },
-        { name: "Penerjemah", desc: "Mengubah teks dari bahasa Inggris ke Indonesia & sebaliknya.", salary: "Pemula: Rp5-9 jt, Berpengalaman: Rp9-15 jt", universities: "UI, UGM, UNAIR, UNPAD, UNDIP" },
-        { name: "Public Relations (PR)", desc: "Membangun hubungan perusahaan & publik.", salary: "Pemula: Rp5-9 jt, Berpengalaman: Rp9-15 jt", universities: "UNPAD, UI, BINUS, UGM, UNAIR" },
-        { name: "Content Creator atau Copywriter", desc: "Menciptakan konten untuk media sosial & website.", salary: "Pemula: Rp4-8 jt, Berpengalaman: Rp8-12 jt", universities: "UI, BINUS, UNPAD, UNAIR, UGM" },
-        { name: "Guru Bahasa Inggris", desc: "Mengajar tata bahasa, kosa kata & kemampuan berbicara.", salary: "Pemula: Rp4-7 jt, Berpengalaman: Rp7-12 jt", universities: "UNJ, UNY, UI, UGM, UPI" },
-        { name: "Tour Guide Internasional", desc: "Memandu wisatawan mancanegara.", salary: "Pemula: Rp4-8 jt, Berpengalaman: Rp8-12 jt", universities: "Udayana, UGM, UI, UNAIR, UNS" },
-        { name: "Linguist (Ahli Bahasa)", desc: "Meneliti struktur & penggunaan bahasa.", salary: "Pemula: Rp6-10 jt, Berpengalaman: Rp10-15 jt", universities: "UI, UGM, UNAIR, UNDIP, UNHAS" }
-    ]
+// =====================
+// DATA PERTANYAAN
+// =====================
+const questions = [
+    {
+        question: "Kamu paling suka kegiatan apa?",
+        options: {
+            A:["Mengatur keuangan atau menganalisis data","Ekonomi"],
+            B:["Menulis cerita, artikel, atau menerjemahkan teks","Sastra Inggris"],
+            C:["Meneliti makhluk hidup dan lingkungan","Biologi"],
+            D:["Mengamati perilaku sosial dan masyarakat","Sosiologi"]
+        }
+    },
+    {
+        question: "Mata pelajaran apa yang paling kamu kuasai?",
+        options: {
+            A:["Matematika dan Ekonomi","Ekonomi"],
+            B:["Bahasa Inggris","Sastra Inggris"],
+            C:["Biologi","Biologi"],
+            D:["Sosiologi","Sosiologi"]
+        }
+    },
+    {
+        question: "Kamu lebih suka bekerja di lingkungan seperti apa?",
+        options: {
+            A:["Perusahaan atau kantor dengan data finansial","Ekonomi"],
+            B:["Studio kreatif atau penerbitan","Sastra Inggris"],
+            C:["Laboratorium penelitian","Biologi"],
+            D:["Lapangan sosial dan komunitas","Sosiologi"]
+        }
+    },
+    {
+        question: "Jika kamu diberi tugas kelompok, peran apa yang paling kamu ambil?",
+        options: {
+            A:["Meneliti data dan mencari fakta","Biologi"],
+            B:["Mengatur komunikasi dan kerja sama kelompok","Sosiologi"],
+            C:["Mendesain atau menulis laporan","Sastra Inggris"],
+            D:["Mengatur rencana dan pembagian tugas","Ekonomi"]
+        }
+    },
+    {
+        question: "Jenis berita atau konten apa yang paling menarik perhatianmu?",
+        options: {
+            A:["Penemuan ilmiah dan teknologi baru","Biologi"],
+            B:["Budaya pop, sastra, atau karya kreatif","Sastra Inggris"],
+            C:["Tren ekonomi dan bisnis","Ekonomi"],
+            D:["Isu sosial, politik, dan kemasyarakatan","Sosiologi"]
+        }
+    },
+    {
+        question: "Teman-teman biasanya mengenal kamu sebagai orang yang...",
+        options: {
+            A:["Imajinatif dan suka bercerita","Sastra Inggris"],
+            B:["Logis dan penuh perhitungan","Ekonomi"],
+            C:["Empatik dan suka menolong","Sosiologi"],
+            D:["Teliti dan suka meriset","Biologi"]
+        }
+    },
+    {
+        question: "Kamu lebih suka membaca tentang...",
+        options: {
+            A:["Kisah tokoh perubahan sosial","Sosiologi"],
+            B:["Penelitian ilmiah dan teknologi","Biologi"],
+            C:["Cerita sastra atau budaya","Sastra Inggris"],
+            D:["Strategi bisnis sukses","Ekonomi"]
+        }
+    },
+    {
+        question: "Kalau ada masalah di sekitar kamu, hal pertama yang kamu pikirkan?",
+        options: {
+            A:["Bagaimana mengomunikasikannya dengan baik","Sastra Inggris"],
+            B:["Bagaimana solusinya secara finansial","Ekonomi"],
+            C:["Apa penyebab ilmiahnya","Biologi"],
+            D:["Bagaimana dampaknya bagi orang lain","Sosiologi"]
+        }
+    },
+    {
+        question: "Kalau kamu lagi jalan-jalan ke tempat baru, hal pertama yang kamu perhatiin apa?",
+        options: {
+            A:["Aktivitas dan kebiasaan orang-orang di sana","Sosiologi"],
+            B:["Keindahan alam atau jenis tumbuhan/hewan uniknya","Biologi"],
+            C:["Arsitektur dan desain bangunannya","Sastra Inggris"],
+            D:["Perkembangan usaha atau toko-toko di sekitarnya","Ekonomi"]
+        }
+    },
+    {
+        question: "Kamu paling suka suasana belajar yang...",
+        options: {
+            A:["Tenang, bisa fokus eksplorasi sendiri","Sastra Inggris"],
+            B:["Ramai, banyak diskusi dan tukar pikiran","Sosiologi"],
+            C:["Praktikal, langsung praktik dan eksperimen","Biologi"],
+            D:["Tertata, jelas langkah-langkah dan targetnya","Ekonomi"]
+        }
+    }
+];
+
+// =====================
+// DATA BIDANG / KERJA
+// =====================
+const bidangInfo = {
+    Ekonomi: {
+        jurusan:["Akuntansi","Manajemen","Ekonomi Pembangunan"],
+        kampus:["UI","UGM","UNAIR"],
+        pekerjaan: {
+            "Akuntan":"Menganalisis laporan keuangan dan memberi saran finansial.",
+            "Manajer Keuangan":"Mengatur dan mengelola strategi keuangan perusahaan.",
+            "Konsultan Pajak":"Membantu perencanaan dan pelaporan pajak klien."
+        }
+    },
+    "Sastra Inggris": {
+        jurusan:["Sastra Inggris","Linguistik","Penerjemahan"],
+        kampus:["UI","UNPAD","UNDIP"],
+        pekerjaan: {
+            "Penerjemah":"Menerjemahkan teks antar bahasa secara akurat.",
+            "Penulis":"Membuat karya tulis kreatif seperti novel dan artikel.",
+            "Editor":"Menyunting naskah agar efektif dan menarik."
+        }
+    },
+    Biologi: {
+        jurusan:["Bioteknologi","Biologi Murni","Ekologi"],
+        kampus:["UGM","IPB","ITB"],
+        pekerjaan: {
+            "Ahli Bioteknologi":"Meneliti organisme untuk aplikasi medis dan pertanian.",
+            "Ahli Gizi":"Memberikan saran nutrisi dan pola makan sehat.",
+            "Peneliti Lingkungan":"Menganalisis dampak aktivitas manusia terhadap alam."
+        }
+    },
+    Sosiologi: {
+        jurusan:["Sosiologi","Antropologi","Kebijakan Publik"],
+        kampus:["UI","UNPAD","UNAIR"],
+        pekerjaan: {
+            "Peneliti Sosial":"Menganalisis perilaku dan tren masyarakat.",
+            "Konsultan Komunitas":"Membantu pengembangan program sosial.",
+            "Dosen Sosiologi":"Mengajar dan meneliti bidang sosial budaya."
+        }
+    }
 };
 
-const showJobsBtn = document.getElementById("showJobsBtn");
-const showAllBtn = document.getElementById("showAllBtn");
-const jobList = document.getElementById("jobList");
-const jobDetails = document.getElementById("jobDetails");
-const restartBtn = document.getElementById("restartBtn");
+// =====================
+// VARIABEL
+// =====================
+let scores = {Ekonomi:0,"Sastra Inggris":0,Biologi:0,Sosiologi:0};
+let current = 0;
 
-function displayJobs(subjects) {
-    jobList.innerHTML = "";
-    subjects.forEach(sub => {
-        jobsData[sub].forEach(job => {
-            const li = document.createElement("li");
-            li.textContent = job.name;
-            li.addEventListener("click", () => showJobDetails(job));
-            jobList.appendChild(li);
+// =====================
+// FUNGSI UTAMA
+// =====================
+function shuffleOptions(options){
+    const entries = Object.entries(options);
+    for(let i=entries.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [entries[i],entries[j]]=[entries[j],entries[i]];
+    }
+    return entries;
+}
+
+function showQuestion(){
+    const q = questions[current];
+    const container = document.getElementById("quiz");
+    const shuffled = shuffleOptions(q.options);
+    container.innerHTML = `
+    <div class="question">
+      <h3>${q.question}</h3>
+      ${shuffled.map(([key,[text]])=>`<button onclick="answer('${key}')">${text}</button>`).join("<br>")}
+    </div>
+  `;
+}
+
+function answer(option){
+    const bidang = questions[current].options[option][1];
+    scores[bidang]++;
+    current++;
+    if(current<questions.length) showQuestion();
+    else showResult();
+}
+
+// =====================
+// HASIL QUIZ
+// =====================
+function showResult(){
+    const maxScore = Math.max(...Object.values(scores));
+    const hasilList = Object.keys(scores).filter(key=>scores[key]===maxScore);
+    let bidangList = hasilList.map(bid=>bidangInfo[bid]);
+    let fakultas = bidangList.map(b=>b.jurusan.join(", ")).join(", ");
+    let bidangDominan = hasilList.join(", ");
+    let kampus = [...new Set(bidangList.flatMap(b=>b.kampus))].join(", ");
+
+    document.getElementById("quiz").innerHTML="";
+    document.getElementById("result").innerHTML=`
+    <h3>🎯 Hasil Quiz</h3>
+    <p><strong>Fakultas yang Cocok:</strong> ${fakultas}</p>
+    <p><strong>Bidang Studi Dominan:</strong> ${bidangDominan}</p>
+    <p><strong>Rekomendasi Kampus:</strong> ${kampus}</p>
+    <button onclick='showDeskripsi(${JSON.stringify(hasilList)})'>Lihat Deskripsi Kerja</button>
+    <button onclick='showAllFields()'>Lihat Deskripsi Kerja Lainnya</button>
+    <button onclick='location.reload()'>Ulangi Quiz</button>
+  `;
+}
+
+// =====================
+// DESKRIPSI PEKERJA
+// =====================
+function showDeskripsi(list){
+    let html="<h3>💼 Deskripsi Kerja</h3>";
+    list.forEach(bidang=>{
+        const data = bidangInfo[bidang];
+        html+=`<h4>${bidang}</h4>`;
+        Object.entries(data.pekerjaan).forEach(([job,desc])=>{
+            html+=`<div class="job-item" onclick="showDesc('${job}','${desc}')">${job}</div>`;
         });
     });
-    jobList.classList.remove("hidden");
+    html+=`<button onclick="location.reload()">Kembali ke Awal</button>`;
+    document.getElementById("result").innerHTML=html;
 }
 
-function showJobDetails(job) {
-    jobDetails.innerHTML = `
-        <h3>${job.name}</h3>
-        <p><strong>Deskripsi:</strong> ${job.desc}</p>
-        <p><strong>Gaji:</strong> ${job.salary}</p>
-        <p><strong>Rekomendasi Universitas:</strong> ${job.universities}</p>
-    `;
-    jobDetails.classList.remove("hidden");
+function showDesc(job,desc){
+    document.getElementById("result").innerHTML=`
+    <h3>${job}</h3>
+    <div class="desc-box">${desc}</div>
+    <button onclick="showResult()">Kembali ke Hasil</button>
+    <button onclick="location.reload()">Kembali ke Awal</button>
+  `;
 }
 
-showJobsBtn.addEventListener("click", () => {
-    const dominant = document.getElementById("dominantSubject").textContent;
-    displayJobs([dominant]);
-});
+// =====================
+// DESKRIPSI BIDANG LAINNYA
+// =====================
+function showAllFields(){
+    const fields = ["Ekonomi","Sastra Inggris","Biologi","Sosiologi"];
+    let html="<h3>📚 Pilih Mapel</h3>";
+    fields.forEach(f=>{
+        html+=`<button onclick="showFieldDesc('${f}')">${f}</button>`;
+    });
+    html+=`<button onclick="location.reload()">Kembali ke Awal</button>`;
+    document.getElementById("result").innerHTML=html;
+}
 
-showAllBtn.addEventListener("click", () => {
-    displayJobs(Object.keys(jobsData));
-});
+function showFieldDesc(field){
+    let desc="";
+    if(field==="Ekonomi"){
+        desc = `💼 Pekerjaan: Akuntan / Manajer Keuangan / Konsultan Pajak<br>Deskripsi: Menganalisis laporan & mengelola keuangan<br>Kisaran Gaji: Rp5.000.000 – Rp30.000.000<br>Rekomendasi Kampus: UI, UGM, UNAIR`;
+    }
+    else if(field==="Sastra Inggris"){
+        desc = `💼 Pekerjaan: Penulis / Editor / Penerjemah<br>Deskripsi: Membuat karya tulis, menyunting, menerjemahkan<br>Kisaran Gaji: Rp4.000.000 – Rp25.000.000<br>Rekomendasi Kampus: UI, UNPAD, UNDIP`;
+    }
+    else if(field==="Biologi"){
+        desc = `💼 Pekerjaan: Ahli Bioteknologi / Ahli Gizi / Peneliti Lingkungan<br>Deskripsi: Meneliti organisme, memberi saran nutrisi, menganalisis lingkungan<br>Kisaran Gaji: Rp5.000.000 – Rp30.000.000<br>Rekomendasi Kampus: UGM, IPB, ITB`;
+    }
+    else if(field==="Sosiologi"){
+        desc = `💼 Pekerjaan: Peneliti Sosial / Konsultan Komunitas / Dosen Sosiologi<br>Deskripsi: Menganalisis masyarakat, mengembangkan program sosial, mengajar<br>Kisaran Gaji: Rp4.500.000 – Rp30.000.000<br>Rekomendasi Kampus: UI, UNPAD, UNAIR`;
+    }
 
-restartBtn.addEventListener("click", () => {
-    jobList.classList.add("hidden");
-    jobDetails.classList.add("hidden");
-    alert("Quiz di-reset. Mulai ulang quiz.");
-});
+    document.getElementById("result").innerHTML=`
+    <h3>${field}</h3>
+    <div class="desc-box">${desc}</div>
+    <button onclick="showAllFields()">Kembali ke Pilihan Mapel</button>
+    <button onclick="location.reload()">Kembali ke Awal</button>
+  `;
+}
+
+// =====================
+// MULAI QUIZ
+// =====================
+showQuestion();
