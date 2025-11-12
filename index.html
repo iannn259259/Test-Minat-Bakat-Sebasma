@@ -1,56 +1,35 @@
-body {
-font-family: Arial, sans-serif;
-background: #f0f2f5;
-margin: 0;
-padding: 0;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Karir</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>🎓 Tes Minat Karir</h1>
 
-.container {
-max-width: 700px;
-margin: 50px auto;
-background: #fff;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+    <div id="quiz-section">
+        <p>Pilih mapel dominan:</p>
+        <button onclick="finishQuiz('Ekonomi')">Ekonomi</button>
+        <button onclick="finishQuiz('Biologi')">Biologi</button>
+        <button onclick="finishQuiz('Sastra Inggris')">Sastra Inggris</button>
+        <button onclick="finishQuiz('Sosiologi')">Sosiologi</button>
+    </div>
 
-button {
-padding: 10px 15px;
-margin: 5px 0;
-cursor: pointer;
-border: none;
-background: #007bff;
-color: white;
-border-radius: 5px;
-transition: 0.3s;
-}
+    <div id="result-section" class="hidden">
+        <h2>🎯 Hasil Quiz</h2>
+        <p>Mapel Dominan: <span id="dominant-subject"></span></p>
+        <button id="show-jobs-btn">Lihat Pekerjaan</button>
+        <div id="jobs-list" class="hidden"></div>
+        <button id="show-all-btn" class="hidden">Ingin lihat bidang studi lainnya?</button>
+        <div id="all-jobs" class="hidden"></div>
+        <br>
+        <button onclick="restartQuiz()">Ulangi Quiz</button>
+    </div>
+</div>
 
-button:hover {
-background: #0056b3;
-}
-
-.hidden {
-display: none;
-}
-
-ul {
-list-style: none;
-padding: 0;
-}
-
-li {
-margin: 5px 0;
-cursor: pointer;
-color: #007bff;
-}
-
-li:hover {
-text-decoration: underline;
-}
-
-#jobDetails {
-margin-top: 15px;
-padding: 10px;
-background: #e9ecef;
-border-radius: 5px;
-}
+<script src="script.js"></script>
+</body>
+</html>

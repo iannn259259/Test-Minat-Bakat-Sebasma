@@ -1,99 +1,84 @@
-const showResultsBtn = document.getElementById('showResultsBtn');
-const resultsDiv = document.getElementById('results');
-const jobsList = document.getElementById('jobsList');
-const jobDetailsDiv = document.getElementById('jobDetails');
-const jobTitle = document.getElementById('jobTitle');
-const jobDesc = document.getElementById('jobDesc');
-const jobSalary = document.getElementById('jobSalary');
-const jobUni = document.getElementById('jobUni');
-const showAllBtn = document.getElementById('showAllBtn');
-const allJobsDiv = document.getElementById('allJobs');
-const retryBtn = document.getElementById('retryBtn');
-const dominantMapelSpan = document.getElementById('dominantMapel');
-
-// Data pekerjaan per mapel
 const jobsData = {
-    "Biologi": [
-        {title:"Ahli Bioteknologi", desc:"Meneliti & mengembangkan teknologi berbasis organisme.", salary:"Pemula: 6-10 jt, Berpengalaman: 10-15 jt", uni:"UI-FMIPA, ITB-SITH, UGM-FBiologi, UNAIR-FST, UNPAD-FMIPA"},
-        {title:"Ahli Ekologi", desc:"Mempelajari hubungan antar makhluk hidup & lingkungannya.", salary:"Pemula: 5-8 jt, Berpengalaman: 8-12 jt", uni:"IPB-FKLH, UGM-FBiologi, UI-FMIPA, UNAIR-FST, UNS-FBiologi"},
-        {title:"Ahli Gizi", desc:"Merancang pola makan sehat.", salary:"Pemula: 4-7 jt, Berpengalaman: 7-12 jt", uni:"IPB-FEM, UGM-FK, UNAIR-FKM, UI-FKM, UNDIP-FKM"},
-        {title:"Peneliti Medis", desc:"Mencari inovasi di bidang kesehatan.", salary:"Pemula: 6-9 jt, Berpengalaman: 9-14 jt", uni:"UI-FK, UGM-FK, ITB-SFarm, UNAIR-FK, UNHAS-FK"},
-        {title:"Mikrobiolog", desc:"Mempelajari mikroorganisme & perannya.", salary:"Pemula: 5-8 jt, Berpengalaman: 8-12 jt", uni:"UGM-FBiologi, UI-FMIPA, ITB-SHayati, UNAIR-FST, UNPAD-FMIPA"},
-        {title:"Ahli Pertanian Modern", desc:"Mengembangkan teknik tanam efisien & berkelanjutan.", salary:"Pemula: 4-7 jt, Berpengalaman: 7-12 jt", uni:"IPB-FPertanian, UGM-FPertanian, UNPAD-FPertanian, UB-FPertanian, UNAIR-FST"},
-        {title:"Ahli Forensik Biologi", desc:"Menganalisis DNA & jaringan tubuh untuk penyelidikan.", salary:"Pemula: 6-9 jt, Berpengalaman: 9-14 jt", uni:"UI-FK, UGM-FBiologi, UNAIR-FK, UNHAS-FK, ITB-SHayati"}
-    ],
-    "Sosiologi": [
-        {title:"Sosiolog", desc:"Menganalisis perilaku & perubahan sosial.", salary:"Pemula: 4-8 jt, Berpengalaman: 8-12 jt", uni:"UI-FISIP, UGM-FISIPOL, UNAIR-FISIP, UNPAD-FISIP, UNS-FISIP"},
-        {title:"Jurnalis Sosial", desc:"Menulis & melaporkan isu sosial.", salary:"Pemula: 4-7 jt, Berpengalaman: 7-12 jt", uni:"UI-Ilmu Kom, UNPAD-FIKOM, UGM-FISIPOL, UNAIR-FISIP, UMN-FIKOM"},
-        {title:"Analis Kebijakan Publik", desc:"Menilai dampak program pemerintah & menyusun rekomendasi.", salary:"Pemula: 5-9 jt, Berpengalaman: 9-14 jt", uni:"UGM-FISIPOL, UI-FISIP, UNAIR-FISIP, UB-FISIP, UNDIP-FISIP"},
-        {title:"Konsultan Sosial", desc:"Memberikan saran pemerintah/NGO dalam masalah sosial.", salary:"Pemula: 4-7 jt, Berpengalaman: 7-12 jt", uni:"UI-FISIP, UGM-FISIPOL, UNAIR-FISIP, UNHAS-FISIP, UNPAD-FISIP"},
-        {title:"Peneliti Sosial", desc:"Meneliti tren sosial & perilaku masyarakat.", salary:"Pemula: 5-8 jt, Berpengalaman: 8-13 jt", uni:"UI-FISIP, UGM-FISIPOL, UNAIR-FISIP, UNPAD-FISIP, UNS-FISIP"},
-        {title:"Pekerja LSM (NGO)", desc:"Bekerja di lembaga nonpemerintah.", salary:"Pemula: 4-8 jt, Berpengalaman: 8-15 jt", uni:"UI-FISIP, UGM-FISIPOL, UNAIR-FISIP, UNPAD-FISIP, UNDIP-FISIP"},
-        {title:"Dosen Sosiologi", desc:"Mengajar & meneliti di perguruan tinggi.", salary:"Pemula: 6-10 jt, Berpengalaman: 10-15 jt", uni:"UI-FISIP, UGM-FISIPOL, UNAIR-FISIP, UNPAD-FISIP, UB-FISIP"}
-    ],
     "Ekonomi": [
-        {title:"Akuntan", desc:"Mencatat, mengelola & menganalisis data keuangan.", salary:"Pemula: 5-10 jt, Berpengalaman: 10-15 jt", uni:"UNAIR-FEB, UI-FEB, UGM-FEB, UNDIP-FEB, UB-FEB"},
-        {title:"Analis Keuangan", desc:"Menganalisis kondisi keuangan perusahaan & pasar.", salary:"Pemula: 6-12 jt, Berpengalaman: 12-18 jt", uni:"UI-FEB, UGM-FEB, ITB-SBM, UNDIP-FEB, UNAIR-FEB"},
-        {title:"Ekonom", desc:"Meneliti & memprediksi tren ekonomi.", salary:"Pemula: 7-12 jt, Berpengalaman: 12-20 jt", uni:"UI-FEB, UGM-FEB, UNPAD-FEB, UB-FEB, UNAIR-FEB"},
-        {title:"Konsultan Bisnis", desc:"Membantu perusahaan mengembangkan strategi.", salary:"Pemula: 6-10 jt, Berpengalaman: 10-20 jt", uni:"UI-FEB, ITB-SBM, UGM-FEB, UNAIR-FEB, BINUS-FBM"},
-        {title:"Investor / Analis Pasar Modal", desc:"Mengelola portofolio saham & risiko investasi.", salary:"Pemula: 7-12 jt, Berpengalaman: 12-25 jt", uni:"UI-FEB, UGM-FEB, ITB-SBM, UNDIP-FEB, UNAIR-FEB"},
-        {title:"Auditor Internal", desc:"Memeriksa kepatuhan & risiko perusahaan.", salary:"Pemula: 6-10 jt, Berpengalaman: 10-15 jt", uni:"UI-FEB, UNDIP-FEB, UNAIR-FEB, UGM-FEB, UB-FEB"},
-        {title:"Manajer Pemasaran", desc:"Mengembangkan strategi promosi & meningkatkan penjualan.", salary:"Pemula: 6-10 jt, Berpengalaman: 10-20 jt", uni:"UI-FEB, ITB-SBM, UGM-FEB, BINUS-FEB, UNDIP-FEB"}
+        { title: "Akuntan", desc: "Mencatat, mengelola & menganalisis data keuangan.", gaji: "Pemula: Rp 5-10 jt, Berpengalaman: Rp 10-15 jt", uni: "UI, UGM, UNAIR, UB, UNDIP" },
+        { title: "Analis Keuangan", desc: "Menganalisis kondisi keuangan perusahaan & pasar.", gaji: "Pemula: Rp 6-12 jt, Berpengalaman: Rp 12-18 jt", uni: "UI, UGM, ITB, UNAIR, UNDIP" },
+        { title: "Ekonom", desc: "Meneliti & memprediksi tren ekonomi.", gaji: "Pemula: Rp 7-12 jt, Berpengalaman: Rp 12-20 jt", uni: "UI, UGM, UNPAD, UB, UNAIR" },
+        { title: "Konsultan Bisnis", desc: "Membantu perusahaan mengembangkan strategi.", gaji: "Pemula: Rp 6-10 jt, Berpengalaman: Rp 10-20 jt", uni: "UI, ITB, UGM, UNAIR, BINUS" },
+        { title: "Investor / Analis Pasar Modal", desc: "Mengelola portofolio saham & risiko investasi.", gaji: "Pemula: Rp 7-12 jt, Berpengalaman: Rp 12-25 jt", uni: "UI, UGM, ITB, UNDIP, UNAIR" },
+        { title: "Auditor Internal", desc: "Memeriksa kepatuhan & risiko perusahaan.", gaji: "Pemula: Rp 6-10 jt, Berpengalaman: Rp 10-15 jt", uni: "UI, UNDIP, UNAIR, UGM, UB" },
+        { title: "Manajer Pemasaran", desc: "Mengembangkan strategi promosi & meningkatkan penjualan.", gaji: "Pemula: Rp 6-10 jt, Berpengalaman: Rp 10-20 jt", uni: "UI, ITB, UGM, BINUS, UNDIP" }
+    ],
+    "Biologi": [
+        { title: "Ahli Bioteknologi", desc: "Meneliti & mengembangkan teknologi berbasis organisme hidup untuk obat, vaksin, & makanan bernilai tinggi.", gaji: "Pemula: Rp 6-10 jt, Berpengalaman: Rp 10-15 jt", uni: "UI, ITB, UGM, UNAIR, UNPAD" },
+        { title: "Ahli Ekologi", desc: "Mempelajari hubungan makhluk hidup & lingkungannya.", gaji: "Pemula: Rp 5-8 jt, Berpengalaman: Rp 8-12 jt", uni: "IPB, UGM, UI, UNAIR, UNS" },
+        { title: "Ahli Gizi", desc: "Merancang pola makan sehat untuk masyarakat.", gaji: "Pemula: Rp 4-7 jt, Berpengalaman: Rp 7-12 jt", uni: "IPB, UGM, UNAIR, UI, UNDIP" },
+        { title: "Peneliti Medis", desc: "Mencari inovasi di bidang kesehatan seperti obat & metode pengobatan.", gaji: "Pemula: Rp 6-9 jt, Berpengalaman: Rp 9-14 jt", uni: "UI, UGM, ITB, UNAIR, UNHAS" },
+        { title: "Mikrobiolog", desc: "Mempelajari mikroorganisme & perannya dalam kesehatan, makanan, & lingkungan.", gaji: "Pemula: Rp 5-8 jt, Berpengalaman: Rp 8-12 jt", uni: "UGM, UI, ITB, UNAIR, UNPAD" },
+        { title: "Ahli Pertanian Modern", desc: "Mengembangkan teknik tanam efisien & pertanian berkelanjutan.", gaji: "Pemula: Rp 4-7 jt, Berpengalaman: Rp 7-12 jt", uni: "IPB, UGM, UNPAD, UB, UNAIR" },
+        { title: "Ahli Forensik Biologi", desc: "Menganalisis DNA, darah, & jaringan tubuh untuk penyelidikan kejahatan.", gaji: "Pemula: Rp 6-9 jt, Berpengalaman: Rp 9-14 jt", uni: "UI, UGM, UNAIR, UNHAS, ITB" }
     ],
     "Sastra Inggris": [
-        {title:"Penulis / Editor", desc:"Membuat & menyunting teks.", salary:"Pemula: 4-8 jt, Berpengalaman: 8-12 jt", uni:"UI-FIB, UGM-FIB, UNAIR-FIB, UNDIP-FIB, UNPAD-FIB"},
-        {title:"Penerjemah", desc:"Mengubah teks/percakapan bahasa Inggris ke Indonesia & sebaliknya.", salary:"Pemula: 5-9 jt, Berpengalaman: 9-15 jt", uni:"UI-FIB, UGM-FIB, UNAIR-FIB, UNPAD-FIB, UNDIP-FIB"},
-        {title:"Public Relations (PR)", desc:"Membangun hubungan baik perusahaan & publik.", salary:"Pemula: 5-9 jt, Berpengalaman: 9-15 jt", uni:"UNPAD-Kom, UI-FISIP, BINUS-Kom, UGM-Kom, UNAIR-Kom"},
-        {title:"Content Creator / Copywriter", desc:"Menciptakan konten menarik untuk media & iklan.", salary:"Pemula: 4-8 jt, Berpengalaman: 8-12 jt", uni:"UI-FIB, BINUS-Kom, UNPAD-Kom, UNAIR-FIB, UGM-FIB"},
-        {title:"Guru Bahasa Inggris", desc:"Mengajar tata bahasa & keterampilan bahasa Inggris.", salary:"Pemula: 4-7 jt, Berpengalaman: 7-12 jt", uni:"UNJ-FBS, UNY-FBS, UI-FIB, UGM-FIB, UPI-FBS"},
-        {title:"Tour Guide Internasional", desc:"Memandu wisatawan & informasi budaya.", salary:"Pemula: 4-8 jt, Berpengalaman: 8-12 jt", uni:"Udayana-FPar, UGM-FIB, UI-FIB, UNAIR-FIB, UNS-FIB"},
-        {title:"Linguist", desc:"Meneliti struktur & sejarah bahasa.", salary:"Pemula: 6-10 jt, Berpengalaman: 10-15 jt", uni:"UI-FIB, UGM-FIB, UNAIR-FIB, UNDIP-FIB, UNHAS-FIB"}
+        { title: "Penulis atau Editor", desc: "Membuat & menyunting teks seperti artikel, novel, atau konten media.", gaji: "Pemula: Rp 4-8 jt, Berpengalaman: Rp 8-12 jt", uni: "UI, UGM, UNAIR, UNDIP, UNPAD" },
+        { title: "Penerjemah", desc: "Mengubah teks atau percakapan dari Inggris ke Indonesia atau sebaliknya.", gaji: "Pemula: Rp 5-9 jt, Berpengalaman: Rp 9-15 jt", uni: "UI, UGM, UNAIR, UNPAD, UNDIP" },
+        { title: "Public Relations (PR)", desc: "Membangun hubungan baik antara perusahaan & publik.", gaji: "Pemula: Rp 5-9 jt, Berpengalaman: Rp 9-15 jt", uni: "UI, UNPAD, BINUS, UGM, UNAIR" },
+        { title: "Content Creator atau Copywriter", desc: "Menciptakan konten menarik untuk media sosial, website, atau iklan.", gaji: "Pemula: Rp 4-8 jt, Berpengalaman: Rp 8-12 jt", uni: "UI, BINUS, UNPAD, UNAIR, UGM" },
+        { title: "Guru Bahasa Inggris", desc: "Mengajar tata bahasa, kosa kata, & keterampilan berbicara & menulis.", gaji: "Pemula: Rp 4-7 jt, Berpengalaman: Rp 7-12 jt", uni: "UNJ, UNY, UI, UGM, UPI" },
+        { title: "Tour Guide Internasional", desc: "Memandu wisatawan mancanegara & memberikan info sejarah & budaya.", gaji: "Pemula: Rp 4-8 jt, Berpengalaman: Rp 8-12 jt", uni: "Udayana, UGM, UI, UNAIR, UNS" },
+        { title: "Linguist (Ahli Bahasa)", desc: "Meneliti struktur, sejarah, & penggunaan bahasa.", gaji: "Pemula: Rp 6-10 jt, Berpengalaman: Rp 10-15 jt", uni: "UI, UGM, UNAIR, UNDIP, UNHAS" }
+    ],
+    "Sosiologi": [
+        { title: "Sosiolog", desc: "Menganalisis perilaku masyarakat & perubahan sosial.", gaji: "Pemula: Rp 4-8 jt, Berpengalaman: Rp 8-12 jt", uni: "UI, UGM, UNAIR, UNPAD, UNS" },
+        { title: "Jurnalis Sosial", desc: "Menulis & melaporkan isu sosial, kemanusiaan, & politik.", gaji: "Pemula: Rp 4-7 jt, Berpengalaman: Rp 7-12 jt", uni: "UI, UNPAD, UGM, UNAIR, UMN" },
+        { title: "Analis Kebijakan Publik", desc: "Menilai dampak program pemerintah & menyusun rekomendasi.", gaji: "Pemula: Rp 5-9 jt, Berpengalaman: Rp 9-14 jt", uni: "UGM, UI, UNAIR, UB, UNDIP" },
+        { title: "Konsultan Sosial", desc: "Memberikan saran kepada pemerintah, NGO, atau lembaga sosial.", gaji: "Pemula: Rp 4-7 jt, Berpengalaman: Rp 7-12 jt", uni: "UI, UGM, UNAIR, UNHAS, UNPAD" },
+        { title: "Peneliti Sosial", desc: "Melakukan penelitian tren sosial, perilaku masyarakat, & ekonomi.", gaji: "Pemula: Rp 5-8 jt, Berpengalaman: Rp 8-13 jt", uni: "UI, UGM, UNAIR, UNPAD, UNS" },
+        { title: "Pekerja LSM (NGO)", desc: "Bekerja di lembaga nonpemerintah fokus pada isu sosial.", gaji: "Pemula: Rp 4-8 jt, Berpengalaman: Rp 8-15 jt", uni: "UI, UGM, UNAIR, UNPAD, UNDIP" },
+        { title: "Dosen Sosiologi", desc: "Mengajar & meneliti bidang sosiologi di perguruan tinggi.", gaji: "Pemula: Rp 6-10 jt, Berpengalaman: Rp 10-15 jt", uni: "UI, UGM, UNAIR, UNPAD, UB" }
     ]
 };
 
-// Mapel dominan (contoh, bisa diganti hasil quiz)
-let dominantMapel = "Ekonomi";
+function finishQuiz(subject) {
+    document.getElementById("quiz-section").classList.add("hidden");
+    document.getElementById("result-section").classList.remove("hidden");
+    document.getElementById("dominant-subject").innerText = subject;
 
-// Tampilkan hasil quiz
-showResultsBtn.addEventListener('click', () => {
-    dominantMapelSpan.textContent = dominantMapel;
-    resultsDiv.classList.remove('hidden');
-    showResultsBtn.classList.add('hidden');
-
-    displayJobs(dominantMapel, jobsList);
-});
-
-function displayJobs(mapel, container) {
-    container.innerHTML = '';
-    jobsData[mapel].forEach(job => {
-        const li = document.createElement('li');
-        li.textContent = job.title;
-        li.addEventListener('click', () => {
-            jobTitle.textContent = job.title;
-            jobDesc.textContent = job.desc;
-            jobSalary.textContent = job.salary;
-            jobUni.textContent = "Rekomendasi Universitas: " + job.uni;
-            jobDetailsDiv.classList.remove('hidden');
-        });
-        container.appendChild(li);
+    const jobsList = document.getElementById("jobs-list");
+    jobsList.innerHTML = '';
+    jobsData[subject].forEach(job => {
+        const div = document.createElement("div");
+        div.className = "job-detail";
+        div.innerHTML = `<strong>${job.title}</strong><p>${job.desc}</p><p>${job.gaji}</p><p>Rekomendasi Universitas: ${job.uni}</p>`;
+        jobsList.appendChild(div);
     });
 }
 
-// Tombol lihat semua mapel
-showAllBtn.addEventListener('click', () => {
-    allJobsDiv.classList.toggle('hidden');
-    allJobsDiv.innerHTML = '';
-    for (let mapel in jobsData) {
-        const h4 = document.createElement('h4');
-        h4.textContent = mapel;
-        allJobsDiv.appendChild(h4);
-        const ul = document.createElement('ul');
-        displayJobs(mapel, ul);
-        allJobsDiv.appendChild(ul);
-    }
+document.getElementById("show-jobs-btn").addEventListener("click", () => {
+    document.getElementById("jobs-list").classList.toggle("hidden");
+    document.getElementById("show-all-btn").classList.toggle("hidden");
 });
 
-// Tombol ulangi quiz
-retryBtn.addEventListener('click', () => {
-    location.reload();
+document.getElementById("show-all-btn").addEventListener("click", () => {
+    const allJobsDiv = document.getElementById("all-jobs");
+    allJobsDiv.innerHTML = '';
+    for (const subject in jobsData) {
+        const h3 = document.createElement("h3");
+        h3.textContent = subject;
+        allJobsDiv.appendChild(h3);
+
+        jobsData[subject].forEach(job => {
+            const div = document.createElement("div");
+            div.className = "job-detail";
+            div.innerHTML = `<strong>${job.title}</strong><p>${job.desc}</p><p>${job.gaji}</p><p>Rekomendasi Universitas: ${job.uni}</p>`;
+            allJobsDiv.appendChild(div);
+        });
+    }
+    allJobsDiv.classList.remove("hidden");
 });
+
+function restartQuiz() {
+    document.getElementById("quiz-section").classList.remove("hidden");
+    document.getElementById("result-section").classList.add("hidden");
+    document.getElementById("jobs-list").classList.add("hidden");
+    document.getElementById("all-jobs").classList.add("hidden");
+    document.getElementById("show-all-btn").classList.add("hidden");
+}
