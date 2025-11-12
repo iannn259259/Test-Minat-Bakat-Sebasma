@@ -1,58 +1,63 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #eef2f7;
+    background-color: #f2f5f7;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
-.container {
-    background: white;
-    width: 90%;
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-h1 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-}
-
-button {
-    background: #3498db;
+header {
+    background-color: #007bff;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 15px;
-    font-size: 16px;
+    padding: 20px 0;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-button:hover {
-    background: #2980b9;
-}
-
-.option {
-    display: block;
-    margin: 10px 0;
-    background: #f4f6f8;
-    padding: 10px;
+#quiz-container {
+    margin: 40px auto;
+    background: white;
+    width: 80%;
+    max-width: 600px;
     border-radius: 10px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    transition: 0.3s;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.option:hover {
-    background: #dce8f5;
+#options-container button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#options-container button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+#next-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#next-btn:hover {
+    background-color: #0056b3;
 }
 
 footer {
-    margin-top: 30px;
+    margin-top: 50px;
+    padding: 10px;
     font-size: 14px;
     color: #555;
 }
