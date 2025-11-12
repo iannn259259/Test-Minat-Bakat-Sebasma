@@ -176,4 +176,4 @@ function showFieldDesc(field){
 // =====================
 // MULAI QUIZ
 // =====================
-showQuestion();
+showQuestion()
