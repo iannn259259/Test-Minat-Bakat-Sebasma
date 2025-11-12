@@ -4,21 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tes Minat Karir Sebasma</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .bidang-btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .job-item {
+            margin: 8px 0;
+            padding: 10px;
+            background: #e0f7fa;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>🎓 Tes Minat Karir Sebasma</h1>
-</header>
+<h1>🎓 Tes Minat Karir Sebasma</h1>
 
-<main>
-    <div id="quiz"></div>
-    <div id="result"></div>
-</main>
+<div id="bidang">
+    <button class="bidang-btn" onclick="showJobs('Biologi')">🧬 BIOLOGI</button>
+    <button class="bidang-btn" onclick="showJobs('Sosiologi')">🧍‍♂️ SOSIOLOGI</button>
+    <button class="bidang-btn" onclick="showJobs('Ekonomi')">💰 EKONOMI</button>
+    <button class="bidang-btn" onclick="showJobs('Sastra Inggris')">📚 SASTRA INGGRIS</button>
+</div>
 
-<footer>
-    © 2025 Tes Minat Karir Sebasma | Dibuat oleh Fauzi Septian Ramadhan
-</footer>
+<div id="result">
+    <p>Pilih bidang untuk melihat pekerjaan</p>
+</div>
 
 <script src="script.js"></script>
 </body>
