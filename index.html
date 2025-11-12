@@ -3,33 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Karir</title>
+    <title>Hasil Quiz Karir</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
-    <h1>🎓 Tes Minat Karir</h1>
-
-    <div id="quiz-section">
-        <p>Pilih mapel dominan:</p>
-        <button onclick="finishQuiz('Ekonomi')">Ekonomi</button>
-        <button onclick="finishQuiz('Biologi')">Biologi</button>
-        <button onclick="finishQuiz('Sastra Inggris')">Sastra Inggris</button>
-        <button onclick="finishQuiz('Sosiologi')">Sosiologi</button>
+    <h1>🎯 Hasil Quiz</h1>
+    <div id="quizResult">
+        <p>Mapel Dominan: <strong id="dominantSubject">Ekonomi</strong></p>
+        <button id="showJobsBtn">Lihat Pekerjaan</button>
+        <button id="showAllBtn">Ingin lihat bidang studi lainnya?</button>
+        <ul id="jobList" class="hidden"></ul>
+        <div id="jobDetails" class="hidden"></div>
     </div>
-
-    <div id="result-section" class="hidden">
-        <h2>🎯 Hasil Quiz</h2>
-        <p>Mapel Dominan: <span id="dominant-subject"></span></p>
-        <button id="show-jobs-btn">Lihat Pekerjaan</button>
-        <div id="jobs-list" class="hidden"></div>
-        <button id="show-all-btn" class="hidden">Ingin lihat bidang studi lainnya?</button>
-        <div id="all-jobs" class="hidden"></div>
-        <br>
-        <button onclick="restartQuiz()">Ulangi Quiz</button>
-    </div>
+    <button id="restartBtn">Ulangi Quiz</button>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
