@@ -180,21 +180,15 @@ function answer(option){
 function showResult(){
     const maxScore = Math.max(...Object.values(scores));
     const hasilList = Object.keys(scores).filter(key=>scores[key]===maxScore);
-    let bidangList = hasilList.map(bid=>bidangInfo[bid]);
-    let fakultas = bidangList.map(b=>b.jurusan.join(", ")).join(", ");
-    let bidangDominan = hasilList.join(", ");
-    let kampus = [...new Set(bidangList.flatMap(b=>b.kampus))].join(", ");
 
     document.getElementById("quiz").innerHTML="";
     document.getElementById("result").innerHTML=`
-    <h3>🎯 Hasil Quiz</h3>
-    <p><strong>Fakultas yang Cocok:</strong> ${fakultas}</p>
-    <p><strong>Bidang Studi Dominan:</strong> ${bidangDominan}</p>
-    <p><strong>Rekomendasi Kampus:</strong> ${kampus}</p>
-    <button onclick='showDeskripsi(${JSON.stringify(hasilList)})'>Lihat Deskripsi Kerja</button>
-    <button onclick='showAllFields()'>Lihat Deskripsi Kerja Lainnya</button>
-    <button onclick='location.reload()'>Ulangi Quiz</button>
-  `;
+        <h3>🎯 Hasil Quiz</h3>
+        <p><strong>Mapel Dominan:</strong> ${hasilList.join(", ")}</p>
+        <button onclick='showDeskripsi(${JSON.stringify(hasilList)})'>Lihat Pekerjaan</button>
+        <button onclick='showAllFields()'>Ingin lihat bidang studi lainnya?</button>
+        <button onclick='location.reload()'>Ulangi Quiz</button>
+    `;
 }
 
 // =====================
@@ -209,7 +203,8 @@ function showDeskripsi(list){
             html+=`<div class="job-item" onclick="showDesc('${job}','${desc}')">${job}</div>`;
         });
     });
-    html+=`<button onclick="location.reload()">Kembali ke Awal</button>`;
+    html+=`<button onclick="showResult()">Kembali ke Hasil</button>
+           <button onclick="location.reload()">Kembali ke Awal</button>`;
     document.getElementById("result").innerHTML=html;
 }
 
@@ -217,7 +212,7 @@ function showDesc(job,desc){
     document.getElementById("result").innerHTML=`
     <h3>${job}</h3>
     <div class="desc-box">${desc}</div>
-    <button onclick="showResult()">Kembali ke Hasil</button>
+    <button onclick="showDeskripsi(Object.keys(scores).filter(key=>scores[key]===Math.max(...Object.values(scores))))">Kembali ke Deskripsi</button>
     <button onclick="location.reload()">Kembali ke Awal</button>
   `;
 }
@@ -236,26 +231,14 @@ function showAllFields(){
 }
 
 function showFieldDesc(field){
-    let desc="";
-    if(field==="Ekonomi"){
-        desc = `💼 Pekerjaan: Akuntan / Manajer Keuangan / Konsultan Pajak<br>Deskripsi: Menganalisis laporan & mengelola keuangan<br>Kisaran Gaji: Rp5.000.000 – Rp30.000.000<br>Rekomendasi Kampus: UI, UGM, UNAIR`;
-    }
-    else if(field==="Sastra Inggris"){
-        desc = `💼 Pekerjaan: Penulis / Editor / Penerjemah<br>Deskripsi: Membuat karya tulis, menyunting, menerjemahkan<br>Kisaran Gaji: Rp4.000.000 – Rp25.000.000<br>Rekomendasi Kampus: UI, UNPAD, UNDIP`;
-    }
-    else if(field==="Biologi"){
-        desc = `💼 Pekerjaan: Ahli Bioteknologi / Ahli Gizi / Peneliti Lingkungan<br>Deskripsi: Meneliti organisme, memberi saran nutrisi, menganalisis lingkungan<br>Kisaran Gaji: Rp5.000.000 – Rp30.000.000<br>Rekomendasi Kampus: UGM, IPB, ITB`;
-    }
-    else if(field==="Sosiologi"){
-        desc = `💼 Pekerjaan: Peneliti Sosial / Konsultan Komunitas / Dosen Sosiologi<br>Deskripsi: Menganalisis masyarakat, mengembangkan program sosial, mengajar<br>Kisaran Gaji: Rp4.500.000 – Rp30.000.000<br>Rekomendasi Kampus: UI, UNPAD, UNAIR`;
-    }
-
-    document.getElementById("result").innerHTML=`
-    <h3>${field}</h3>
-    <div class="desc-box">${desc}</div>
-    <button onclick="showAllFields()">Kembali ke Pilihan Mapel</button>
-    <button onclick="location.reload()">Kembali ke Awal</button>
-  `;
+    const data = bidangInfo[field];
+    let html=`<h3>${field}</h3>`;
+    Object.entries(data.pekerjaan).forEach(([job,desc])=>{
+        html+=`<div class="job-item" onclick="showDesc('${job}','${desc}')">${job}</div>`;
+    });
+    html+=`<button onclick="showAllFields()">Kembali ke Pilihan Mapel</button>
+           <button onclick="location.reload()">Kembali ke Awal</button>`;
+    document.getElementById("result").innerHTML=html;
 }
 
 // =====================
