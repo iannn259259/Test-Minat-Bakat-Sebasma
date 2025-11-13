@@ -1,27 +1,24 @@
+/* ===== STYLE FINAL TES MINAT KARIR SEBASMA ===== */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #007bff, #00b4d8);
+    background: linear-gradient(135deg, #007bff, #00c6ff);
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    color: #333;
 }
 
 .container {
-    background: white;
-    width: 90%;
-    max-width: 600px;
+    max-width: 800px;
+    margin: 80px auto;
+    background: #fff;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
 
 h1 {
     color: #007bff;
-    font-size: 26px;
     margin-bottom: 20px;
 }
 
@@ -30,49 +27,54 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 12px 20px;
-    margin: 10px 5px;
+    padding: 10px 18px;
     font-size: 16px;
+    margin: 8px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
     background: #0056b3;
-    transform: scale(1.05);
 }
 
-.hidden { display: none; }
+.hidden {
+    display: none;
+}
 
-.option-btn {
+#question-container {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+#options-container button {
     display: block;
-    background: #e9f2ff;
-    color: #0056b3;
+    width: 100%;
+    margin: 8px 0;
+    background: #e3f2fd;
+    color: #007bff;
     border: 2px solid #007bff;
     border-radius: 8px;
-    padding: 10px;
-    margin: 8px 0;
-    cursor: pointer;
     transition: 0.3s;
 }
 
-.option-btn:hover {
+#options-container button:hover {
     background: #007bff;
     color: white;
 }
 
-#desc-container, .desc-box {
-    background: #f1f8ff;
-    border-left: 5px solid #007bff;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
+#jobs-container {
+    margin-top: 20px;
+    background: #e9f5ff;
+    padding: 15px;
+    border-radius: 10px;
     text-align: left;
 }
 
 select {
-    padding: 10px;
-    border: 2px solid #007bff;
-    border-radius: 8px;
-    outline: none;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
 }
