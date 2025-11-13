@@ -1,36 +1,122 @@
 const questions = [
-    {question: "Apa yang paling kamu suka?", options: {A: "Bekerja dengan makhluk hidup", B: "Mempelajari perilaku manusia", C: "Mengelola angka dan uang", D: "Menulis atau menerjemahkan teks"} },
-    {question: "Aktivitas favoritmu?", options: {A: "Eksperimen lab", B: "Mengamati masyarakat", C: "Analisis data ekonomi", D: "Menulis cerita atau artikel"} },
-    {question: "Kamu paling tertarik dengan?", options: {A: "Biologi & kesehatan", B: "Sosial & budaya", C: "Bisnis & ekonomi", D: "Bahasa & sastra"} },
-    {question: "Pekerjaan impianmu?", options: {A: "Ahli Bioteknologi", B: "Sosiolog", C: "Akuntan", D: "Penulis"} },
-    {question: "Kegiatan yang paling membuatmu senang?", options: {A: "Penelitian ilmiah", B: "Mengamati interaksi sosial", C: "Investasi & pasar modal", D: "Menyusun artikel"} },
-    {question: "Keahlianmu yang paling menonjol?", options: {A: "Analisis organisme", B: "Analisis perilaku manusia", C: "Mengelola keuangan", D: "Menguasai bahasa"} },
-    {question: "Jenis buku favorit?", options: {A: "Buku sains", B: "Sosiologi & psikologi", C: "Ekonomi & bisnis", D: "Novel & literatur"} },
-    {question: "Lebih suka bekerja?", options: {A: "Lab / penelitian", B: "Lapangan / masyarakat", C: "Kantor / analisis", D: "Menulis / kreativitas"} },
-    {question: "Proyek yang paling kamu nikmati?", options: {A: "Eksperimen biologi", B: "Survei sosial", C: "Analisis laporan keuangan", D: "Membuat konten kreatif"} },
-    {question: "Nilai yang paling penting bagimu?", options: {A: "Inovasi ilmiah", B: "Pemahaman sosial", C: "Keuntungan & strategi", D: "Kreativitas bahasa"} },
+    {
+        question: "Kamu paling suka kegiatan apa?",
+        options: {
+            A: ["Mengatur keuangan dan menganalisis data", "EKONOMI"],
+            B: ["Menulis cerita atau menerjemahkan teks", "SASTRA INGGRIS"],
+            C: ["Meneliti tumbuhan atau hewan", "BIOLOGI"],
+            D: ["Mengamati perilaku manusia", "SOSIOLOGI"]
+        }
+    },
+    {
+        question: "Apa mata pelajaran favoritmu di sekolah?",
+        options: {
+            A: ["Biologi", "BIOLOGI"],
+            B: ["Sosiologi", "SOSIOLOGI"],
+            C: ["Ekonomi", "EKONOMI"],
+            D: ["Bahasa Inggris", "SASTRA INGGRIS"]
+        }
+    },
+    {
+        question: "Kamu lebih suka bekerja di bidang apa?",
+        options: {
+            A: ["Laboratorium atau riset ilmiah", "BIOLOGI"],
+            B: ["Masyarakat dan perilaku sosial", "SOSIOLOGI"],
+            C: ["Bisnis dan keuangan", "EKONOMI"],
+            D: ["Bahasa dan komunikasi", "SASTRA INGGRIS"]
+        }
+    },
+    {
+        question: "Kamu merasa paling kuat dalam hal apa?",
+        options: {
+            A: ["Berpikir logis dan analitis", "EKONOMI"],
+            B: ["Berempati dan memahami orang lain", "SOSIOLOGI"],
+            C: ["Menjelaskan fenomena alam", "BIOLOGI"],
+            D: ["Berbicara atau menulis dengan lancar", "SASTRA INGGRIS"]
+        }
+    },
+    {
+        question: "Kalau ada tugas kelompok, kamu biasanya bagian apa?",
+        options: {
+            A: ["Menyusun laporan keuangan atau strategi", "EKONOMI"],
+            B: ["Menulis teks presentasi", "SASTRA INGGRIS"],
+            C: ["Meneliti dan mencari data lapangan", "BIOLOGI"],
+            D: ["Mengatur kerja tim", "SOSIOLOGI"]
+        }
+    },
+    {
+        question: "Kamu lebih suka menonton film tentang apa?",
+        options: {
+            A: ["Bisnis dan kesuksesan", "EKONOMI"],
+            B: ["Hubungan antar manusia", "SOSIOLOGI"],
+            C: ["Petualangan ilmiah", "BIOLOGI"],
+            D: ["Kisah budaya dan bahasa", "SASTRA INGGRIS"]
+        }
+    },
+    {
+        question: "Kamu ingin berkarier sebagai apa?",
+        options: {
+            A: ["Analis keuangan", "EKONOMI"],
+            B: ["Penulis atau penerjemah", "SASTRA INGGRIS"],
+            C: ["Ahli bioteknologi", "BIOLOGI"],
+            D: ["Konselor sosial", "SOSIOLOGI"]
+        }
+    },
+    {
+        question: "Kamu paling menikmati saat...",
+        options: {
+            A: ["Menganalisis perilaku masyarakat", "SOSIOLOGI"],
+            B: ["Membaca literatur asing", "SASTRA INGGRIS"],
+            C: ["Melakukan eksperimen", "BIOLOGI"],
+            D: ["Menghitung keuntungan bisnis", "EKONOMI"]
+        }
+    },
+    {
+        question: "Apa jenis buku yang kamu sukai?",
+        options: {
+            A: ["Novel dan puisi", "SASTRA INGGRIS"],
+            B: ["Ensiklopedia alam", "BIOLOGI"],
+            C: ["Psikologi dan sosial", "SOSIOLOGI"],
+            D: ["Bisnis dan investasi", "EKONOMI"]
+        }
+    },
+    {
+        question: "Kalau ikut lomba, kamu pilih lomba apa?",
+        options: {
+            A: ["Debat Bahasa Inggris", "SASTRA INGGRIS"],
+            B: ["Olimpiade Biologi", "BIOLOGI"],
+            C: ["Kompetisi Ekonomi", "EKONOMI"],
+            D: ["Sosiologi kreatif", "SOSIOLOGI"]
+        }
+    }
 ];
 
-const jobs = {
-    "BIOLOGI": [
-        {title: "Ahli Bioteknologi", desc: "Ahli bioteknologi meneliti dan mengembangkan teknologi berbasis organisme hidup untuk menciptakan produk seperti obat, vaksin, dan makanan bernilai tinggi.", gaji: "Pemula: Rp6-10 jt, Berpengalaman: Rp10-15 jt", uni: "UI, ITB, UGM, UNAIR, UNPAD"},
-        {title: "Ahli Ekologi", desc: "Ahli ekologi mempelajari hubungan antar makhluk hidup dan lingkungannya untuk menjaga keseimbangan ekosistem dan keberlanjutan alam.", gaji: "Pemula: Rp5-8 jt, Berpengalaman: Rp8-12 jt", uni: "IPB, UGM, UI, UNAIR, UNS"},
-        // bisa ditambah semua pekerjaan BIOLOGI
+const jobData = {
+    BIOLOGI: [
+        "Ahli Bioteknologi",
+        "Peneliti Laboratorium",
+        "Ahli Lingkungan",
+        "Guru Biologi"
     ],
-    "SOSIOLOGI": [
-        {title: "Sosiolog", desc: "Menganalisis perilaku masyarakat dan perubahan sosial untuk memahami pola interaksi sosial.", gaji: "Pemula: Rp4-8 jt, Berpengalaman: Rp8-12 jt", uni: "UI, UGM, UNAIR, UNPAD, UNS"},
-        // bisa ditambah semua pekerjaan SOSIOLOGI
+    SOSIOLOGI: [
+        "Konselor Sosial",
+        "Peneliti Masyarakat",
+        "HR Specialist",
+        "Dosen Sosiologi"
     ],
-    "EKONOMI": [
-        {title: "Akuntan", desc: "Mencatat, mengelola, dan menganalisis data keuangan suatu organisasi.", gaji: "Pemula: Rp5-10 jt, Berpengalaman: Rp10-15 jt", uni: "UNAIR, UI, UGM, UNDIP, UB"},
+    EKONOMI: [
+        "Analis Keuangan",
+        "Manajer Bisnis",
+        "Ekonom",
+        "Konsultan Pajak"
     ],
     "SASTRA INGGRIS": [
-        {title: "Penulis", desc: "Membuat dan menyunting teks seperti artikel, novel, atau konten media.", gaji: "Pemula: Rp4-8 jt, Berpengalaman: Rp8-12 jt", uni: "UI, UGM, UNAIR, UNDIP, UNPAD"},
+        "Penerjemah",
+        "Penulis",
+        "Editor",
+        "Guru Bahasa Inggris"
     ]
 };
-
-let currentQuestion = 0;
-let answers = [];
 
 const questionContainer = document.getElementById("question-container");
 const optionsContainer = document.getElementById("options-container");
@@ -38,69 +124,63 @@ const nextBtn = document.getElementById("next-btn");
 const resultContainer = document.getElementById("result-container");
 const mainSubjectSpan = document.getElementById("main-subject");
 const showJobsBtn = document.getElementById("show-jobs-btn");
-const showOtherSubjectsBtn = document.getElementById("show-other-subjects-btn");
 const jobsContainer = document.getElementById("jobs-container");
 const subjectSelector = document.getElementById("subject-selector");
 const subjectSelect = document.getElementById("subject-select");
 const showSelectedJobsBtn = document.getElementById("show-selected-jobs-btn");
 
+let currentQuestion = 0;
+let scores = { BIOLOGI: 0, SOSIOLOGI: 0, EKONOMI: 0, "SASTRA INGGRIS": 0 };
+
 function showQuestion() {
     const q = questions[currentQuestion];
-    questionContainer.innerText = `${currentQuestion + 1}. ${q.question}`;
+    questionContainer.textContent = q.question;
     optionsContainer.innerHTML = "";
-    for (let key in q.options) {
+
+    Object.entries(q.options).forEach(([key, [text, subject]]) => {
         const btn = document.createElement("button");
-        btn.innerText = `${key}. ${q.options[key]}`;
-        btn.addEventListener("click", () => selectAnswer(key));
+        btn.textContent = text;
+        btn.classList.add("option-btn");
+        btn.addEventListener("click", () => {
+            scores[subject]++;
+            nextBtn.disabled = false;
+        });
         optionsContainer.appendChild(btn);
-    }
+    });
+
+    nextBtn.disabled = true;
 }
 
-function selectAnswer(answer) {
-    answers.push(answer);
+function showResult() {
+    document.getElementById("quiz-container").classList.add("hidden");
+    resultContainer.classList.remove("hidden");
+
+    const mainSubject = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+    mainSubjectSpan.textContent = mainSubject;
+}
+
+nextBtn.addEventListener("click", () => {
     currentQuestion++;
     if (currentQuestion < questions.length) {
         showQuestion();
     } else {
         showResult();
     }
-}
-
-function showResult() {
-    document.getElementById("quiz-container").classList.add("hidden");
-    resultContainer.classList.remove("hidden");
-    const counts = {A:0,B:0,C:0,D:0};
-    answers.forEach(a => counts[a]++);
-    let max = "A";
-    for (let key in counts) {
-        if (counts[key] > counts[max]) max = key;
-    }
-    const mapelMap = {A: "BIOLOGI", B: "SOSIOLOGI", C: "EKONOMI", D: "SASTRA INGGRIS"};
-    mainSubjectSpan.innerText = mapelMap[max];
-}
-
-function displayJobs(subject) {
-    jobsContainer.innerHTML = "";
-    if (!jobs[subject]) return;
-    jobs[subject].forEach(job => {
-        const div = document.createElement("div");
-        div.className = "job-card";
-        div.innerHTML = `<h4>${job.title}</h4><p>${job.desc}</p><p><strong>Gaji:</strong> ${job.gaji}</p><p><strong>Rekomendasi Universitas:</strong> ${job.uni}</p>`;
-        jobsContainer.appendChild(div);
-    });
-}
-
-showQuestion();
-
-showJobsBtn.addEventListener("click", () => {
-    displayJobs(mainSubjectSpan.innerText);
 });
 
-showOtherSubjectsBtn.addEventListener("click", () => {
+showJobsBtn.addEventListener("click", () => {
+    jobsContainer.innerHTML = "";
+    const mainSubject = mainSubjectSpan.textContent;
+    const jobs = jobData[mainSubject];
+    jobsContainer.innerHTML = `<h3>Pekerjaan yang Sesuai (${mainSubject}):</h3><ul>${jobs.map(j => `<li>${j}</li>`).join("")}</ul>`;
+});
+
+document.getElementById("show-other-subjects-btn").addEventListener("click", () => {
     subjectSelector.classList.remove("hidden");
 });
 
 showSelectedJobsBtn.addEventListener("click", () => {
-    const selectedSubject = subjectSelect.value;
-    displayJobs(selectedSubject);
+    const selected = subjectSelect.value;
+    const jobs = jobData[selected];
+    jobsContainer.innerHTML = `<h3>Pekerjaan untuk ${selected}:</h3><ul>${jobs.map(j => `<li>${j}</li>`).join("")}</ul>`;
 });
