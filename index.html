@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tes Minat Karir</title>
+    <title>Tes Minat Karir Sebasma</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,25 +13,31 @@
     <div id="quiz-container">
         <div id="question-container"></div>
         <div id="options-container"></div>
-        <button id="next-btn">Selanjutnya</button>
+        <button id="next-btn" class="hidden">Selanjutnya</button>
     </div>
 
     <div id="result-container" class="hidden">
-        <h2>Mapel Minat Utama: <span id="main-subject"></span></h2>
-        <button id="show-jobs-btn">Lihat Deskripsi Kerja</button>
-        <button id="show-other-subjects-btn">Lihat Deskripsi Kerja Lainnya</button>
-        <div id="jobs-container"></div>
+        <h2>🎯 Hasil Quiz</h2>
+        <p><strong>Fakultas yang Cocok:</strong> <span id="faculty-list"></span></p>
+        <p><strong>Bidang Studi Dominan:</strong> <span id="main-field"></span></p>
+        <p><strong>Rekomendasi Kampus:</strong> <span id="recommended-campus"></span></p>
+
+        <button id="show-desc-btn">Lihat Deskripsi Kerja</button>
+        <button id="show-other-btn">Lihat Deskripsi Kerja Lainnya</button>
+        <button id="restart-btn">Ulangi Quiz</button>
+
+        <div id="desc-container"></div>
     </div>
 
     <div id="subject-selector" class="hidden">
         <h3>Pilih Mapel:</h3>
         <select id="subject-select">
-            <option value="BIOLOGI">Biologi</option>
-            <option value="SOSIOLOGI">Sosiologi</option>
-            <option value="EKONOMI">Ekonomi</option>
-            <option value="SASTRA INGGRIS">Sastra Inggris</option>
+            <option value="Ekonomi">Ekonomi</option>
+            <option value="Sastra Inggris">Sastra Inggris</option>
+            <option value="Biologi">Biologi</option>
+            <option value="Sosiologi">Sosiologi</option>
         </select>
-        <button id="show-selected-jobs-btn">Tampilkan Pekerjaan</button>
+        <button id="show-selected-btn">Tampilkan Pekerjaan</button>
     </div>
 </div>
 
